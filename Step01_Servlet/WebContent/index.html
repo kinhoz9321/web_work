@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>/index.html</title>
+</head>
+<body>
+<div class="container">
+	<h1>인덱스 페이지 입니다.</h1>
+	<ul>
+		<li><a href="hello">hello 요청</a></li>
+		<li><a href="ya">ya 요청</a></li>
+		
+		<!-- 상대경로 * /로 시작하지 않으면 상대경로이다. * -->
+		<li><a href="time">현재 시간 보기</a></li>
+		
+		<!-- 절대경로 -->
+		<li><a href="/Step01_Servlet/time">현재 시간 보기2</a></li>
+		<!-- servlet에 적을 때는 /time만 적는다. -->
+		
+		<li><a href="sub/fortune">오늘의 운세보기</a></li>
+		
+		<!-- .jsp 운세보기 -->
+		<li><a href="sub/fortune.jsp">오늘의 운세보기2</a></li>
+		<!-- 
+		만약 sub/fortune.html 이라고 했으면 sub 폴더를 만들어서 fortune.html 파일을 만들었어야 한다. 
+		"sub/fortune.jsp" 404
+		 -->
+		 
+		 <li><a href="send?msg=hello">GET 방식 전송 테스트1</a></li>
+		 <li><a href="send.jsp?msg=hi">GET 방식 전송 테스트2</a></li>
+		 <!-- 
+		 GET 방식 전송은 링크를 달고 가도 똑같다. 
+		 GET 방식 폼 전송예제나 GET 방식 전송 테스트이 링크를 누르나 똑같은 것이다.
+		 
+		 링크를 눌렀을 때 요청할 정보와 간단한 정보를 같이 전달할 수 있다는 것.
+		 
+		 get 방식은 주소창에 달고 가는 것
+		 post는 몸통에 달고 가는 것
+		 
+		 링크를 눌렀을때 post 방식 전송은 못한다. 
+		 하지만 get방식 전송은 가능.
+		 
+		 GET
+		 POST
+		 PUT
+		 DELETE 
+		 전송 방식이 있는데
+		 
+		 PUT, DELETE는 자바스크립트로 가능하다.
+		 
+		 http://browse.gmarket.co.kr/search?keyword=플스5
+		 
+		 /search 서블릿을 읽어와서
+		 keyword=플스5 를 DB에서 select 해서
+		 반복문 돌면서 자료를 추출해낸다.
+		  -->
+		  
+		<li><a href="test/buy.jsp?num=999&type=ABC">999번 상품 구입하기</a></li>
+		 <!-- 
+		 파라미터가 여러개면 &로 구분하면 된다. 
+		  -->
+	</ul>
+	<h2>GET 방식 폼 전송예제</h2>
+	<!-- 클라이언트 웹브라우저에서 서버에 데이터를 전송할 때 사용하는 요소 -->
+	<form action="send" method="get">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송</button>
+		<button type="reset">취소</button>
+	</form>
+	<!-- 
+	http://localhost:8888/Step01_Servlet/send?msg=hello 
+	action="send" =/send
+	/send 요청을 처리할 수 있는 서블릿을 만들어야 합니다. 
+	
+	웹브라우저 클라이언트의 입장 요청
+	***서블릿,jsp 서버의 입장 응답
+	-->
+	
+	<br />
+	
+	<form action="send.jsp" method="get">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송2</button>
+		<button type="reset">취소</button>
+	</form>
+	<!-- 
+	http://localhost:8888/Step01_Servlet/send.jsp?msg=hello 
+	send servlet 응답
+	-->
+	<form action="test/buy.jsp" method="get">
+		<input type="text" name="num" placeholder="갯수 입력"/>
+		<input type="text" name="type" placeholder="물건 입력"/>
+		<button type="submit">전송</button>
+		<button type="reset">취소</button>
+	</form>
+	
+	<h2>POST 방식 폼 전송 예제</h2>
+	<form action="test/send2" method="post">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송3</button>
+	</form>
+	<form action="test/send2.jsp" method="post">
+		<input type="text" name="msg" placeholder="문자열 입력"/>
+		<button type="submit">전송 4</button>
+	</form>
+	<!-- 
+	사이트 들어가서 검사 폼 전송방식 확인해보기 공부공부!
+	 -->
+</div>
+</body>
+</html>
+<!-- 
+http://localhost:8888/Step01_Servlet/index.html
+/Step01_Servlet : context path
+/index.html : 순수 요청 경로
+
+웹브라우저와 톰캣 웹서버와의 대화
+웹브라우저는 요청하는 입장 (주소창 입력, 링크 누르기 등...)
+톰캣서버는 응답하는 입장
+
+index.html=web content
+
+톰캣서버는 요청하는 것이 없으면 404로 응답한다.
+
+내 컴퓨터에 같이 돌리고 있어도, 웹브라우저와 톰캣서버는 각자 다른 컴퓨터에서 돌리고 있다고 생각하기!
+
+http://localhost:8888/Step01_Servlet/hello
+/Step01_Servlet : WebContent or root path (최상위 경로)
+/hello : 요청 경로
+
+https://entertain.v.daum.net/v/20201216145856257
+/v/20201216145856257 : 요청 경로
+
+요청하는 컨텐츠가 항상 정적인 컨텐츠만 있는 것은 아니다.
+정적인 컨텐츠 (존재하는 컨텐츠)
+ex)
+css/bootstrap.css
+images/kim1.png
+
+우리의 목적은 hello에 404를 발생시키지 않고 응답하게 만드는 것. 
+
+공부할 때는 8888포트를 사용.
+사이트 돌릴 때는 80포트 사용.
+
+프로젝트 하나당 사이트 하나라고 알아두면 된다. 원래는.
+ -->
