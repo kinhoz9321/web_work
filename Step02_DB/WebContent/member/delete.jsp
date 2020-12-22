@@ -13,7 +13,7 @@
     MemberDto dto=new MemberDto();
     dto.setNum(strNum);
     
-    MemberDao dao=new MemberDao();
+    MemberDao dao=MemberDao.getInstance();
     boolean isSuccess=dao.delete(dto);
 
     //MemberDao dao=new MemberDao();

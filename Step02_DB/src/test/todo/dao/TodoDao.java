@@ -10,7 +10,28 @@ import java.util.List;
 import test.todo.dto.TodoDto;
 import test.util.DbcpBean;
 
-public class TodoDao {
+/*
+ * application 전역에 대해서 Dao 객체는 * 오직 한번만 생성 *되는 구조로 바꾸어야 한다.
+ * 웹 어플리케이션은 여러 Client 의 요청을 빠르게 처리해야하기 때문에 
+ * 불필요한 Dao의 중복 생성은 웹 어플리케이션의 성능에 영향을 주기 때문이다.
+ */
+
+public class TodoDao {//이 3가지 원칙만 지키면 dao객체는 오직 한번만 생성되는 구조가 된다.
+	//1. 자신의 객체를 담을 static 필드 선언
+	private static TodoDao dao;
+	
+	//2. 외부에서 객체 생성이 불가 하도록 생성자의 접근 지정자를 private로 
+	private TodoDao() {} //TodoDao new 불가 ,TodoDao dao=TodoDao.getInstance(); 해서 받아가야함.
+	
+	//3. 자신의 참조값을 리턴해주는 public static 메소드 정의
+	public static TodoDao getInstance() {
+		if(dao==null) {//getInstance()메소드가 최초 호출되는 경우
+			dao=new TodoDao();//객체를 생성해서 참조값을 static 필드에 저장한다.
+		}
+		//static 필드에 저장된 참조값을 리턴해준다.
+		return dao;
+	}
+	//참조값을 Instance라고도 부른다.
 	
 	//할일 목록을 리턴해주는 메소드
 	public List<TodoDto> getList(){

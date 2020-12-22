@@ -13,7 +13,7 @@
 	dto.setName(name);
 	dto.setAddr(addr);
 	//4. MemberDao 에 insert 메소드 만들고 
-	MemberDao dao=new MemberDao();
+	MemberDao dao=MemberDao.getInstance();
 	//5. MemberDao 객체를 이용해서 DB 에 저장
 	boolean isSuccess=dao.insert(dto);
 	

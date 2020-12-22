@@ -11,7 +11,7 @@
 	//1. 수정할 회원의 번호를 읽어온다
 	int num=Integer.parseInt(request.getParameter("num"));
 	//2. DB에서 해당회원의 정보를 얻어온다.
-	MemberDto dto=new MemberDao().getData(num);
+	MemberDto dto=MemberDao.getInstance().getData(num);
 	//3. 수정 form 에 기본 값으로 넣어주면서 응답한다.
 %>
 </head>

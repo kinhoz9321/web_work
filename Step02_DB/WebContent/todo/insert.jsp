@@ -18,8 +18,10 @@
 	TodoDto dto=new TodoDto();
 	dto.setContent(content);
 	//Dao를 이용해서 DB에 저장한다.
-	TodoDao dao=new TodoDao();
-	boolean isSuccess=dao.insert(dto);//new TodoDao().insert(dto);
+	//TodoDao dao=TodoDao.getInstance();
+	//boolean isSuccess=dao.insert(dto);//new TodoDao().insert(dto);
+	
+	boolean isSuccess=TodoDao.getInstance().insert(dto);
 	
 	//결과를 응답한다.
 %>

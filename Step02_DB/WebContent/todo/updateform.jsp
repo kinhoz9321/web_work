@@ -12,7 +12,8 @@
 	//수정할 할 일 번호를 읽어온다
 	int num=Integer.parseInt(request.getParameter("num"));
 	//수정할 할일 정보를 DB로부터 얻어온다.
-	TodoDto dto=new TodoDao().getData(num);
+	TodoDao dao=TodoDao.getInstance();
+	TodoDto dto=dao.getData(num);
 	//수정 폼을 응답한다.
 %>
 </head>

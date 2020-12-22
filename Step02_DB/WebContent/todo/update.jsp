@@ -32,7 +32,8 @@
 	dto.setNum(num);
 	dto.setContent(content);
 	//DB에 수정 반영
-	boolean isSuccess=new TodoDao().update(dto);	
+	TodoDao dao=TodoDao.getInstance();
+	boolean isSuccess=dao.update(dto);	
 	//응답
 %>
 

@@ -22,7 +22,7 @@
 	dto.setAddr(addr);
 	//MemberDto dto=new MemberDto(num, name, addr); 가능
 	//5. MemberDao 객체를 이용해서 DB 에 수정 반영하기
-	MemberDao dao=new MemberDao();
+	MemberDao dao=MemberDao.getInstance();
 	boolean isSuccess=dao.update(dto);
 	
 	//6. 클라이언트(웹브라우저)에게 응답하기

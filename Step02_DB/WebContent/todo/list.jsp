@@ -11,7 +11,9 @@
 <!-- /Step02_DB -> ${pageContext.request.contextPath} * cpath tab! * / *bootcss tab! * 전체 작성-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css"/>
 <%
-	List<TodoDto> list=new TodoDao().getList();
+	//TodoDao dao=TodoDao.getInstance();
+	//List<TodoDto> list=dao.getList();
+	List<TodoDto> list=TodoDao.getInstance().getList();
 %>
 </head>
 <body>

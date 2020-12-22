@@ -18,8 +18,9 @@
 	TodoDto dto=new TodoDto();
 	dto.setNum(strNum);
 	
-	TodoDao dao=new TodoDao();
-	boolean isSuccess=dao.delete(dto);
+	//TodoDao dao=TodoDao.getInstance();
+	//boolean isSuccess=dao.delete(dto);
+	boolean isSuccess=TodoDao.getInstance().delete(dto);
 	//boolean isSuccess=new TodoDao().delete(num);
 	
 	/* 

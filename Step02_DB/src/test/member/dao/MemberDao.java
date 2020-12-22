@@ -11,6 +11,21 @@ import test.member.dto.MemberDto;
 import test.util.DbcpBean;
 
 public class MemberDao {
+	//1. 자신의 객체를 담을 static 필드 선언
+	private static MemberDao dao;
+	
+	//2. 외부에서 객체 생성이 불가 하도록 생성자의 접근 지정자를 private로 만듦.
+	private MemberDao() {}
+	
+	//3. 자신의 참조값을 리턴해주는 public static 메소드 정의
+	public static MemberDao getInstance() {
+		if(dao==null) {
+			dao=new MemberDao();
+		}
+		
+		return dao;
+	}
+	
 	//회원 목록을 리턴해주는 메소드
 	public List<MemberDto> getList(){
 		
