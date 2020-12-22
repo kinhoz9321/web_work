@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+<!-- bootstrap css 로딩하기 -->
+</head>
+<body>
+<div class="container">
+	<h1>나의 웹페이지</h1>
+	
+	<!-- 상대 경로로 이미지 로딩하기 -->
+	<img src="images/kim1.png"/>
+	
+	<!-- 절대 경로로 이미지 로딩하기 -->
+	<img src="/Hello/images/kim1.png"/>
+	<!-- /Hello/ 최상위 경로 -->
+	
+	<ul>
+		<!-- 상대 경로 링크 -->
+		<li><a href="game.html">게임 하러가기</a></li>
+		
+		<!-- 
+			절대 경로 링크
+			/Hello 는 context path (프로젝트 명)이다.
+			/Hello/ 는 Hello 프로젝트의 WebContent 를 가리킨다.
+			context 경로 / 하기
+		 -->
+		 
+		 <li><a href="/Hello/game.html">게임 하러가기2</a></li>
+		 
+		 <!-- 상대 경로 링크 -->
+		 <li><a href="hobby/piano.html">피아노 치러가기</a></li>
+	</ul>
+</div>
+</body>
+</html>
+<!-- 
+인터넷 주소창에 치기
+http://localhost:8888/Hello/index.html
+
+강사님과 해본 것
+1. html 파일을 만들었을 때 이동하는 연습.
+2. 상대경로와 절대경로에 대해 알기.
+
+상대 경로보다 절대 경로를 더 많이 쓰고, 절대 경로가 무조건 더 좋다.
+헷갈리면 절대 경로가 더 편하다.
+상대 경로는 * 현재 경로를 기준으로 이동하는 것 *이기 때문에 헷갈릴 소지가 있다.
+
+404는 해당 경로가 존재하지 않을 때 톰캣이 응답하는 것.
+
+* run 했을 때 일어나는 4가지 동작 *
+- run 버튼을 눌렀을때 이클립스가 대신 해주는 작업이 무엇인지?
+
+1. index.html 페이지가 속해있는 프로젝트 add
+2. Tomcat 서버 start
+3. 웹브라우저 launch
+4. index.html 페이지를 요청할수 있는 경로를 주소창에 입력해 준다.
+
+ -->

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>/hobby/piano.html</title>
+</head>
+<body>
+	<ul>
+		<li><a href="/Hello/index.html">인덱스 페이지로 돌아가기</a></li>
+		<!-- index.html 로 하면 상대 경로로 찾기 때문에 hobby 폴더 안에서 index.html 을 찾게 된다. -->
+		
+		<!-- bootstrap css 링크 걸기 -->
+		<link rel="stylesheet" href="/Hello/css/bootstrap.css" />
+		
+		<!-- 상대 경로 -->
+		<li><a href="../index.html">인덱스로 가기2</a></li>
+		<!-- ../는 상위 경로를 가리키는 것 -->
+		
+		<br />
+		
+		<!-- 절대 경로로 kim1.png 이미지를 로딩 시켜 보세요. -->
+		<img src="/Hello/images/kim1.png"/>
+		
+		<!-- 상대 경로로 kim1.png 이미지를 로딩 시켜 보세요. -->
+		<img src="../images/kim1.png"/>		
+	</ul>
+</body>
+</html>
+<!-- 
+http://localhost:8888/Hello/hobby/piano.html
+
+주소창 관찰을 잘하고, 경로 테스트를 많이 해봐야 한다.
+
+절대 경로가 확실히 편하다. 
+오류가 날 가능성이 거의 없어보임.
+ -->
