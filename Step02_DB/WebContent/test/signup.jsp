@@ -38,6 +38,7 @@
     System.out.println("--- language ---");
     
     //checkbox 강사님 풀이
+    //체크박스의 values를 저장할 arrayList 객체 생성
     List<String> languageList=new ArrayList<>();
     
     /*
@@ -155,7 +156,6 @@
 	
 		닉네임 <input type="text" name="nick" value="<%=nick%>"/><br />
 		<%-- 참조되는 내용을 그대로 클라이언트의 웹브라우저에 출력하는 방법 = <%= %> --%>
-		
 		<!-- 왜 yes,no 따로 2개를 만들지 않으면 radio 버튼이 하나만 넘어가는 걸까? -->
 		이메일 수신 여부
 		<%if(email.equals("yes")){ %>

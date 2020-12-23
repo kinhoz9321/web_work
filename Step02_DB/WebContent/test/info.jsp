@@ -23,11 +23,11 @@
 		conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 		//select 문 작성
 		String sql = "SELECT email, concern, lan, comm"
-				+ "FROM form_test"
-				+ "WHERE nick=?";
+				+ " FROM form_test"
+				+ " WHERE nick=?";
 		pstmt = conn.prepareStatement(sql);
 		//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
-		rs=pstmt.executeQuery();
+		pstmt.setString(1, nick);
 		//select 문 수행하고 ResultSet 받아오기
 		rs = pstmt.executeQuery();
 		//while문 혹은 if문에서 ResultSet으로부터 data 추출
