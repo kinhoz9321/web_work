@@ -7,6 +7,25 @@
 <title>/test/signup_form.jsp</title>
 </head>
 <body>
+
+	<!-- 
+		폼 전송되는 내용을 아래의 테이블에 저장되는 기능을 구현해 보세요.
+		
+		language 칼럼에는 선택하지 않으면 NULL을 넣고 
+		Java 를 선택하면 Java
+		Java와 Python 을 선택하면 Java,Python
+		Java와 Python 과 C++ 을 선택하면 Java, Python, C++
+		문자열이 저장되도록 하세요.
+		
+		CREATE TABLE form_test(
+			nick VARCHAR2(20) PRIMARY KEY,
+			email CHAR(3),
+			concern VARCHAR2(10),
+			lan VARCHAR2(10),
+			comment CLOB
+		);
+	 -->
+	 
 	<h1>회원가입 폼 입니다.</h1>
 	<form action="signup.jsp" method="post">
 	<!-- 

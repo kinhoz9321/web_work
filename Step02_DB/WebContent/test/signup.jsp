@@ -1,3 +1,6 @@
+<%@page import="test.util.DbcpBean"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.awt.event.ActionListener"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -56,6 +59,88 @@
     }
     
     System.out.println("comment: "+comment);
+    
+    /*
+    String languages="";
+    if(language!=null){
+       for(String str:language) {
+          languages+=str;
+          languages+="/";
+       }
+       languages=languages.substring(0,languages.length()-1);
+    } else {
+       languages="NULL";
+    }
+    */
+    
+    //DB에 저장하기
+    //체크박스에 체크된 내용을 DB에 저장하기 위해서 가공하기 (다시 한번 살펴보기 어렵다!)
+    String lan=null;
+    
+    if(language!=null){
+    	//일단 빈문자열을 넣어주고
+    	lan="";
+    	for(int i=0; i<language.length; i++){
+    		//만일 i 가 배열의 마지막 인덱스가 아니라면
+    		if(i != language.length-1){//2?
+    			// lan 에 문자열을 이어 붙이고 뒤에 , 를 붙인다.
+	    		lan += language[i]+",";
+    		}else{
+    			//마지막 인덱스이면 lan에 문자열을 이어 붙이고 뒤에 , 는 붙이지 않는다.
+    			lan += language[i];
+    		}
+    	}
+    }
+    /*
+ 	이해해보자
+    language 의 length 는 '최대 3개' null일수도 있고, 1개일수도 있고, 2개일 수도 있다.
+    java, python, c++
+    
+    language.length-1 = 2
+    
+    i!=language.length-1
+    i가 2가 아니라면 (2가 아니라면? 1이나 3?)
+    lan("") language+"," 붙이기
+    
+    i=language.length-1
+    i가 2라면
+    lan("") language만 출력하기
+    */
+    
+    //1. 원래는 전송된 정보를 dto에 넣은 다음
+    
+    //2. Dao 를 이용해서 DB에 저장
+    
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	int flag=0;
+	
+	try {
+		conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
+		
+		String sql = "INSERT INTO form_test(nick,email,concern,lan,comm) VALUES (?,?,?,?,?)";
+
+		//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, nick);
+		pstmt.setString(2, email);
+		pstmt.setString(3, concern);
+		pstmt.setString(4, lan);
+		pstmt.setString(5, comment);
+		
+		flag = pstmt.executeUpdate();
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if(pstmt!=null)pstmt.close();
+			if(conn!=null)conn.close();
+		} catch (Exception e2) {
+			
+		}
+	}
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -64,6 +149,7 @@
 <title>/test/signup.jsp</title>
 </head>
 <body>
+	<a href="info.jsp?nick=<%=nick%>">DB 에 저장된 내용 불러오기</a>
 	<h1>폼에 입력한 내용</h1>
 	<form action="signup.jsp" method="post">
 	
@@ -217,4 +303,6 @@
 </html>
 <!-- 
 페이지 소스보기에는 안보이는 내용이 훨씬 많음!
+
+체크 박스가 여러개라면 반복문 돌면서 하나하나 출력할 수 있게끔 하는 고려도 해보아야 한다.
  -->
