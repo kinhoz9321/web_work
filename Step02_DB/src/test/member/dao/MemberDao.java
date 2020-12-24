@@ -25,9 +25,19 @@ public class MemberDao {
 		
 		return dao;
 	}
+	/*
+	SELECT
+	FROW
+		(SELECT result1.*, ROWNUM AS rnum)
+		FROM
+			(SELECT num,name,addr
+			FROM member
+			ORDER BY num DESC) result1)
+	WHERE rnum BETWEEN ? AND ?;
+	*/
 	
 	//회원 목록을 리턴해주는 메소드
-	public List<MemberDto> getList(){
+	public List<MemberDto> getList(MemberDto dto){//startRowNum, endRowNum을 담아와서 select 문에서 사용할 것
 		
 		//리턴해줄 ArrayList 객체 생성
 		List<MemberDto> list=new ArrayList<MemberDto>();
@@ -41,12 +51,18 @@ public class MemberDao {
 			//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 			
 			//select 문 작성
-			String sql="SELECT num,name,addr"
-					+ " FROM member"//습관적으로 한칸 띄우기
-					+ " ORDER BY num DESC";
+			String sql="SELECT *" + 
+					"	FROM" + 
+					"		(SELECT result1.*, ROWNUM AS rnum" + 
+					"		FROM" + 
+					"			(SELECT num,name,addr" + 
+					"			FROM member" + 
+					"			ORDER BY num DESC) result1)" + 
+					"	WHERE rnum BETWEEN ? AND ?";
 			pstmt=conn.prepareStatement(sql);
 			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
-			
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
 			//select 문 수행하고 ResultSet 받아오기
 			rs=pstmt.executeQuery();
 			//while문 혹은 if문에서 ResultSet으로부터 data 추출
@@ -56,12 +72,12 @@ public class MemberDao {
 			 */
 			while(rs.next()) {
 				//MemberDto 객체를 생성해서 회원 한명의 정보를 담아서
-				MemberDto dto=new MemberDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setName(rs.getString("name"));
-				dto.setAddr(rs.getString("addr"));
+				MemberDto tmp=new MemberDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setName(rs.getString("name"));
+				tmp.setAddr(rs.getString("addr"));
 				//ArrayList 객체에 누적 시킨다.
-				list.add(dto);
+				list.add(tmp);
 			}
 			/*
 			 * 1. while문이 10번 반복되면 MemberDto 객체가 10개 생긴다.
@@ -86,6 +102,46 @@ public class MemberDao {
 		return list;//null 하면 nullpointException 일어남.
 	}
 	
+	//전체 row의 갯수를 리턴하는 메소드
+	public int getCount() {
+		int count=0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
+			//select 문 작성 (별칭두는 이유 갖고올때 칼럼명으로 가져가야 함)
+			String sql = "select nvl(max(rownum),0) as num" + 
+					"from member";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
+
+			//select 문 수행하고 ResultSet 받아오기
+			rs = pstmt.executeQuery();
+			//while문 혹은 if문에서 ResultSet으로부터 data 추출
+			/*
+			 * 로우가 1개면 if문
+			 * 여러개면 while문
+			 */
+			if (rs.next()) {
+				count=rs.getInt("num");//별칭 칼럼명 적기
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return count;
+	}
 	
 	
 		//회원 한명의 정보를 리턴하는 메소드
