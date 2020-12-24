@@ -106,6 +106,10 @@
     i=language.length-1
     i가 2라면
     lan("") language만 출력하기
+    
+    i != language.length-1 (배열의 인덱스를 구할 때 통상적으로 쓰이는 구문 -1) 어색하게 생각하지 말 것.
+    
+    language가 배열의 끝 index가 아닌 것은 다 ,를 붙여라
     */
     
     //1. 원래는 전송된 정보를 dto에 넣은 다음
