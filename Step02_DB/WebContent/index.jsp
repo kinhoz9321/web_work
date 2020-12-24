@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/bootstrap.css" />
 </head>
 <body>
+<%-- 
 <!-- container 밖으로 navbar 빼기 -->
 <nav class="navbar navbar-dark bg-primary navbar-expand-sm">
 <!-- navbar-expand-sm 목록을 예쁘게 나열해줌 -->
@@ -45,6 +46,11 @@
 		</nav>
 	</div>
 </nav>
+-->
+--%>
+
+<%-- 포함시킬 jsp 페이지의 위치를 반드시 상대 경로로 page의 value로 정확히 명시해야 한다. --%>
+<jsp:include page="include/navbar.jsp"></jsp:include>
 <div class="container">
 	<h1>인덱스 페이지 입니다.</h1>
 	<ul>

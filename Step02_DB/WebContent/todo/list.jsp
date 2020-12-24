@@ -17,6 +17,7 @@
 %>
 </head>
 <body>
+<%-- 
 <!-- container 밖으로 navbar 빼기 -->
 <nav class="navbar navbar-dark bg-primary navbar-expand-sm">
 <!-- navbar-expand-sm 목록을 예쁘게 나열해줌 -->
@@ -54,6 +55,8 @@
 		</nav>
 	</div>
 </nav>
+--%>
+<jsp:include page="../include/navbar.jsp"></jsp:include>
 	<div class="container">
 	<a href="insertform.jsp">할일 추가하기</a><!-- 상대경로 -->
 	<a href="../index.jsp">인덱스 페이지로 돌아가기</a>
