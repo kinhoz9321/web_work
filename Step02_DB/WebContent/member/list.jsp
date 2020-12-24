@@ -14,6 +14,8 @@
 <meta charset="UTF-8">
 <title>/member/list.jsp</title>
 <link rel="stylesheet" href="../css/bootstrap.css" />
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 </head>
 <body>
 <%-- 
