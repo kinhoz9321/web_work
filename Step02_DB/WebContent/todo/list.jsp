@@ -70,8 +70,8 @@
 	</nav>
 </div>
 	<div class="container">
-		<button type="button" class="btn btn-outline-success"><a href="insertform.jsp">할일 추가하기</a><!-- 상대경로 --></button>
-		<button type="button" class="btn btn-outline-warning"><a href="../index.jsp">인덱스 페이지로 돌아가기</a></button><br />
+		<button type="button" class="btn btn-outline-success"><a href="insertform.jsp" style="color:black">할일 추가하기</a><!-- 상대경로 --></button>
+		<button type="button" class="btn btn-outline-warning"><a href="../index.jsp" style="color:black">인덱스 페이지로 돌아가기</a></button><br />
 	<!-- "${pageContext.request.contextPath}/todo/insertform.jsp" 절대경로로 쓰면 이렇게 -->
 	<table class="table">
 		<thead class="table-dark">
