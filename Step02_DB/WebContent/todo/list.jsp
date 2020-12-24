@@ -56,7 +56,9 @@
 	</div>
 </nav>
 --%>
-<jsp:include page="../include/navbar.jsp"></jsp:include>
+<jsp:include page="../include/navbar.jsp">
+	<jsp:param value="todo" name="thisPage"/>
+</jsp:include>
 <div class="container">
 	<nav>
 		<ul class="breadcrumb">

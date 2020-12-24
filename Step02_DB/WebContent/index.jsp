@@ -70,7 +70,7 @@ css로딩 include 시키기
 		모두 구현후 bootstrap scc 도 모든 페이지에 적용 시켜 보세요.
 		 -->
 		<li><a href="todo/list.jsp">할일 목록 보기</a></li>
-		<li><a href="test/signup_form.jsp">폼 안에 있는 여러 input 요소 테스트</a></li>
+		<li><a href="test/signup_form.jsp">회원가입 폼 작성하기</a></li>
 	</ul>
 </div>
 </body>

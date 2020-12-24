@@ -23,7 +23,7 @@
 	<!-- 될 수 있으면 모든 경로는 절대 경로로 쓰는 것이 좋다. -->
 		<div class="form-group">
 			<label for="content">할 일</label>
-			<input class="form-control" type="text" name="name"/>
+			<input class="form-control" type="text" name="content"/>
 		</div>
 		<button class="btn btn-success" type="submit">추가</button>		
 	</form>

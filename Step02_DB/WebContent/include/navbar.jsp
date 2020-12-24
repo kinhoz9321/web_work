@@ -17,8 +17,21 @@
  	부트스트랩 css는 이곳에 포함시키지 않는다. css가 동작을 하려면 navbar.jsp 가 포함되는 페이지에 로딩이 되어야 한다.
  	ex)index, list 등..
  --%>
- <nav class="navbar navbar-dark bg-primary navbar-expand-sm">
+ <%
+ //"thisPage" 라는 파라미터 명으로 전달된 문자열 읽어오기
+ String thisPage=request.getParameter("thisPage");
+ //NullPointException 방지 (500번 버스 안타기)
+ if(thisPage==null){
+	 thisPage="";
+ }
+ %>
+
+ 
+ <nav class="navbar navbar-dark bg-warning navbar-expand-sm">
  	<div class="container">
+ 		<a class="navbar-brand" href="${pageContext.request.contextPath}/">
+ 			<img style="width:30px","heighte="30px" src="${pageContext.request.contextPath}/images/rabbit_1.png"/>
+ 		</a>
 		<a class="navbar-brand" href="${pageContext.request.contextPath}/">Acorn</a>
 		<button class="navbar-toggler" data-toggle="collapse" data-target="#topNav">
 		<!-- 
@@ -28,13 +41,14 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<!-- 화면을 좁히면 목록이 사라짐 버튼을 눌렀을 때 접었다 폈다 할 목록 적기 -->
+		<%-- <%=thisPage.equals("todo")?"active":"" --%>
 		<div class="collapse navbar-collapse" id="topNav">
 			<ul class="navbar-nav">
-				<li class="nav-item">
+				<li class="nav-item <%=thisPage.equals("member")?"active":"" %>">
 					<!-- 가급적이면 절대경로를 쓸 것. context 경로 걸기. cpath+tab -->
 					<a class="nav-link" href="${pageContext.request.contextPath}/member/list.jsp">회원목록</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item <%=thisPage.equals("todo")?"active":"" %>">
 					<a class="nav-link" href="${pageContext.request.contextPath}/todo/list.jsp">할일목록</a>
 				</li>
 			</ul>

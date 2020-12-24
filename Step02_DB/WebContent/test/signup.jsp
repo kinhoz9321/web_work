@@ -152,8 +152,10 @@
 <head>
 <meta charset="UTF-8">
 <title>/test/signup.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
+<jsp:include page="../include/navbar.jsp"></jsp:include>
 	<a href="info.jsp?nick=<%=nick%>">DB 에 저장된 내용 불러오기</a>
 	<h1>폼에 입력한 내용</h1>
 	<form action="signup.jsp" method="post">
