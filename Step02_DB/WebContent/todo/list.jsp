@@ -9,9 +9,7 @@
 <meta charset="UTF-8">
 <title>/todo/list.jsp</title>
 <!-- /Step02_DB -> ${pageContext.request.contextPath} * cpath tab! * / *bootcss tab! * 전체 작성-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css"/>
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 <%
 	//TodoDao dao=TodoDao.getInstance();
 	//List<TodoDto> list=dao.getList();

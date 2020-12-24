@@ -7,10 +7,9 @@
 <title>/index.jsp</title>
 <!-- 
 css로딩은 navbar.jsp 에 포함시키지 않고, 이곳에서 한다. 이 3가지가 있어야 navbar.jsp 에 동작하는 ui가 있다. 
+css로딩 include 시키기
 -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+<jsp:include page="include/resource.jsp"></jsp:include>
 </head>
 <body>
 <%-- 
