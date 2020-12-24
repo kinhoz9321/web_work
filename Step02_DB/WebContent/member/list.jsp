@@ -46,9 +46,18 @@
 --%>
 <jsp:include page="../include/navbar.jsp"></jsp:include>
 <div class="container">
-	<a href="insertform.jsp">회원 추가 하러가기</a>
-	<a href="../index.jsp">인덱스 페이지로 돌아가기</a>
-	<h1>회원 목록입니다.</h1>
+	<nav><!-- 현재 어디에 있는지 확인할 수 있는 navbar -->
+		<ul class="breadcrumb"><!-- breadcrumb Home/회원목록 이렇게 출력됨 -->
+			<li class="breadcrumb-item">
+				<a href="${pageContext.request.contextPath}">Home</a>
+			</li>
+			<li class="breadcrumb-item">회원목록</li>
+		</ul>
+	</nav>
+</div>
+<div class="container">
+	<button type="button" class="btn btn-outline-success"><a href="insertform.jsp">회원 추가 하러가기</a></button>
+	<button type="button" class="btn btn-outline-warning"><a href="../index.jsp">인덱스 페이지로 돌아가기</a></button>
 	<table class="table">
 		<thead class="table-dark">
 			<tr>

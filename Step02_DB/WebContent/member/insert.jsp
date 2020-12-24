@@ -24,16 +24,26 @@
 <head>
 <meta charset="UTF-8">
 <title>/member/insert.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
+<div class="container">
+	<h1>Alert</h1>
 	<%if(isSuccess){ %><!-- 부호 사용법 확실히 숙지하기 헷갈림 -->
-		<p>회원 1명의 정보를 추가했습니다. <a href="list.jsp">확인</a></p>
+		<p class="alert alert-success">
+			회원 1명의 정보를 추가했습니다.
+			<a class="alert-link" href="list.jsp">확인</a>
+		</p>
 	<%}else{ %>
-		<p>회원 정보 추가 실패! <a href="insertform.jsp">다시 입력하기</a></p>
+		<p class="alert alert-danger">
+			회원 정보 추가 실패! 
+			<a class="alert-danger" href="insertform.jsp">다시 입력하기</a>
+		</p>
 	<%} %>
+</div>
+</body>
+</html>
 	<!-- 
 	이름을 길게 쓰면 실패됨 
 	SQLException: ORA-12899: value too large for column "ACORN01"."MEMBER"."NAME" (actual: 165, maximum: 20)
 	-->
-</body>
-</html>

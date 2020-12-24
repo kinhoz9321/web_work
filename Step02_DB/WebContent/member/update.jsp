@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/member/update.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 <%
 	//1. 폼 전송된 파라미터 읽어 낼 때 한글 깨지지 않도록 인코딩 설정
 	request.setCharacterEncoding("utf-8");
@@ -29,17 +30,20 @@
 %>
 </head>
 <body>
+<div class="container">
+	<h1>Alert</h1>
 	<%if(isSuccess){ %><!-- 부호 사용법 확실히 숙지하기 헷갈림 -->
-		<script>
+		<script class="alert alert-success">
 			alert("<%=num%> 번 회원의 정보를 수정했습니다.");
 			location.href="list.jsp";
 		</script>
 		<!-- script 를 쓰지 않으면  alert("수정했다!"); 라는 문자열이 출력된다. -->
 	<%}else{ %>
-		<script>
+		<script class="alert alert-danger">
 			alert("회원 정보 수정 실패!");
 			location.href="list.jsp";
 		</script>
 	<%} %>
+</div>
 </body>
 </html>
