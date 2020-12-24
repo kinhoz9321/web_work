@@ -44,7 +44,7 @@
 	-->
 		<div class="form-group">
 			<label for="nick">닉네임</label>
-			<input type="text" name="nick"/><br />
+			<input class="form-control" type="text" name="nick" style="width:350px","heighte="30px"/><br />
 		</div>
 		<div class="form-group">
 			<label for="email">이메일 수신 여부</label>
@@ -82,7 +82,7 @@
 		 -->
 		<div class="form-group">
 			<label for="comment">남기고 싶은 말</label>
-			<textarea class="form-control" name="comment" cols="30" rows="10"></textarea>
+			<textarea class="form-control" name="comment" cols="30" rows="10" style="width:350px","heighte="30px"></textarea>
 		</div>
 		<button class="btn btn-success" type="submit">가입</button>
 		<button class="btn btn-danger" type="reset">취소</button>
