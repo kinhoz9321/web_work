@@ -6,18 +6,24 @@ public class MemberDto {
 	private String name;
 	private String addr;
 	
+	//페이징 처리에 필요한 필드
+	private int startRowNum;
+	private int endRowNum;
+	
 	//디폴트 생성자
 	public MemberDto() {}
 
 	//생성자
-	public MemberDto(int num, String name, String addr) {
+	public MemberDto(int num, String name, String addr, int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
 		this.name = name;
 		this.addr = addr;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
 
-	//setter getter
+	//getter setter
 	public int getNum() {
 		return num;
 	}
@@ -41,6 +47,24 @@ public class MemberDto {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
+	
 	
 	
 }
