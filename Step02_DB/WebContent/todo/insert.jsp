@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/todo/insert.jsp</title>
-<link rel="stylesheet" href="../css/bootstrap.css" />
+<jsp:include page="../include/resource.jsp"></jsp:include>
 <%
 	//한글이 깨지지 않도록
 	request.setCharacterEncoding("utf-8");
@@ -34,14 +34,19 @@
 		<p>회원 정보 추가 실패! <a href="insertform.jsp">다시 입력하기</a></p>
 	<%} %>
 --%>
+<div class="container">
+	<h1>Alert</h1>
 	<%if(isSuccess){ %>
 		<script>
 			location.href="list.jsp";
 		</script>
 		<!-- 순간적으로 /todo/insert.jsp를 거쳐서 /todo/list.jsp로 간다 -->
 	<%}else{ %>
-		
-		<p>글자 수가 너무 많습니다. <a href="list.jsp">목록으로 돌아가기</a></p>
+		<p class="alert alert-danger">
+			글자 수가 너무 많습니다. 
+			<a class="alert-danger" href="list.jsp">목록으로 돌아가기</a>
+		</p>
 	<%} %>
+</div>
 </body>
 </html>

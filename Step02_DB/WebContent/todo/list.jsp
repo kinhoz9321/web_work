@@ -57,11 +57,20 @@
 </nav>
 --%>
 <jsp:include page="../include/navbar.jsp"></jsp:include>
+<div class="container">
+	<nav>
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="${pageContext.request.contextPath}">Home</a>
+			</li>
+			<li class="breadcrumb-item">할일목록</li>
+		</ul>
+	</nav>
+</div>
 	<div class="container">
-	<a href="insertform.jsp">할일 추가하기</a><!-- 상대경로 -->
-	<a href="../index.jsp">인덱스 페이지로 돌아가기</a>
+		<button type="button" class="btn btn-outline-success"><a href="insertform.jsp">할일 추가하기</a><!-- 상대경로 --></button>
+		<button type="button" class="btn btn-outline-warning"><a href="../index.jsp">인덱스 페이지로 돌아가기</a></button><br />
 	<!-- "${pageContext.request.contextPath}/todo/insertform.jsp" 절대경로로 쓰면 이렇게 -->
-	<h1>할일 목록 입니다.</h1>
 	<table class="table">
 		<thead class="table-dark">
 			<tr>

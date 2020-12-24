@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/todo/delete.jsp</title>
-<link rel="stylesheet" href="../css/bootstrap.css" />
+<jsp:include page="../include/resource.jsp"></jsp:include>
 <%
 	//삭제할 글번호를 읽어와서
 	String num=request.getParameter("num");

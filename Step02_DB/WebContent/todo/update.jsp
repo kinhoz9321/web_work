@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/todo/update.jsp</title>
-<link rel="stylesheet" href="../css/bootstrap.css" />
+<jsp:include page="../include/resource.jsp"></jsp:include>
 <%--
 	request.setCharacterEncoding("utf-8");
 	int num=Integer.parseInt(request.getParameter("num"));
@@ -40,15 +40,16 @@
 </head>
 <body>
 <div class="container">
+	<h1>Alert</h1>
 	<%if(isSuccess){ %>
-		<p>
+		<p class="alert alert-success">
 			<strong><%=num %></strong> 번 할일을 수정했습니다.
-			<a href="list.jsp">목록보기</a>
+			<a class="alert-link" href="list.jsp">목록보기</a>
 		</p>
 	<%}else{ %>
-		<p>
+		<p class="alert alert-danger">
 			수정 실패!
-			<a href="updateform.jsp?num=<%=num%>">다시 작성</a>
+			<a class="alert-danger" href="updateform.jsp?num=<%=num%>">다시 작성</a>
 		</p>
 	<%} %>
 </div>
