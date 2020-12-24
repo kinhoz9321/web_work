@@ -16,6 +16,32 @@
 <link rel="stylesheet" href="../css/bootstrap.css" />
 </head>
 <body>
+<!-- container 밖으로 navbar 빼기 -->
+<nav class="navbar navbar-dark bg-primary navbar-expand-sm">
+<!-- navbar-expand-sm 목록을 예쁘게 나열해줌 -->
+	<!-- 
+	navbar 안에 새로운 div class="container" 생성 
+	navbar 는 화면 전체를 차지하고 안에 내용은 container 만큼 차지해서 정렬됨.
+	-->
+	<div class="container">
+		<nav class="navbar navbar-dark bg-primary navbar-expand-sm">
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/">Acorn</a>
+			<!-- 
+			http://localhost:8888/Step02_DB/ 최상위 경로만 써도 아파치 서버가 index.jsp를 찾아준다. 
+			index.jsp가 없으면 404가 뜸.
+			-->
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<!-- 가급적이면 절대경로를 쓸 것. context 경로 걸기. cpath+tab -->
+					<a class="nav-link" href="${pageContext.request.contextPath}/member/list.jsp">회원목록</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="${pageContext.request.contextPath}/todo/list.jsp">할일목록</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</nav>
 <div class="container">
 	<a href="insertform.jsp">회원 추가 하러가기</a>
 	<a href="../index.jsp">인덱스 페이지로 돌아가기</a>
