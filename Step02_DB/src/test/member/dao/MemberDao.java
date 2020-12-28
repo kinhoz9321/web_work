@@ -112,7 +112,7 @@ public class MemberDao {
 			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 			//select 문 작성 (별칭두는 이유 갖고올때 칼럼명으로 가져가야 함)
 			String sql = "select nvl(max(rownum),0) as num" + 
-					"from member";
+					" from member";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
 
