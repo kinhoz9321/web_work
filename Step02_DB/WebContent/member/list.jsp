@@ -186,6 +186,14 @@ list.jsp 가 ?thisPage=member 라는 파라미터를 navbar.jsp 에게 전달했
 				<li class="page-item">
 					<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1 %>">Prev</a>
 				</li>
+			<%}else{ %>
+			<!-- 
+			disabled 존재하지만 누를 수 없게 만듦 javascript: 자바스크립트를 비워두겠다. 동작하지 않도록. 
+			출력은 하지만 동작하지 않음.
+			-->
+				<li class="page-item disabled">
+					<a class="page-link" href="javascript:">Prev</a>
+				</li>
 			<%} %>
 			<%for(int i=startPageNum; i<=endPageNum; i++){ %><!-- 반복문 돌면서 li가 총 5개 만들어짐 (s1-e5)-->
 				<%if(i==pageNum){ %><!-- i가 현재페이지 번호와 같으면 active가 들어가야 한다. -->
@@ -200,9 +208,17 @@ list.jsp 가 ?thisPage=member 라는 파라미터를 navbar.jsp 에게 전달했
 				<%} %>
 			<%} %>
 			<%if(endPageNum < totalPageCount){ %>
-					<li class="page-item">
-						<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
-					</li>
+				<li class="page-item">
+					<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1 %>">Next</a>
+				</li>
+			<%}else{ %>
+			<!-- 
+			disabled 존재하지만 누를 수 없게 만듦 javascript: 자바스크립트를 비워두겠다. 동작하지 않도록. 
+			출력은 하지만 동작하지 않음.
+			-->
+				<li class="page-item disabled">
+					<a class="page-link" href="javascript:">Next</a>
+				</li>
 			<%} %>
 		</ul>
 	</nav>
@@ -211,4 +227,5 @@ list.jsp 가 ?thisPage=member 라는 파라미터를 navbar.jsp 에게 전달했
 </html>
 <%--
 페이징처리는 거의 이것과 비슷한 코드로 한다.
+코드 분석 필요
 --%>
