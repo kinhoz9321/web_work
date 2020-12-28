@@ -33,3 +33,17 @@ public class FortuneServlet extends HttpServlet{
 		rd.forward(req, resp);
 	}
 }
+/*
+요청받는 것, 로직처리는 servlet에서 하고
+응답은 jsp 에서 하겠다. 필요한 내용은 httpservlet에 담아놨으니 (request scope) forward 해서 봐라?
+
+servlet이 요청을 받지만 forward 된 jsp에서 응답을 한다.
+
+servlet과 jsp 가 협동 작업을 한다는 게 요점.
+
+나중에 스프링에서는 
+servlet에서 복잡한 작업을 하고
+jsp 에서는 응답에만 집중하는 작업을 할 것.
+
+
+*/
