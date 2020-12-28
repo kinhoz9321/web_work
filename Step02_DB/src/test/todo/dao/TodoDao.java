@@ -34,7 +34,7 @@ public class TodoDao {//이 3가지 원칙만 지키면 dao객체는 오직 한�
 	//참조값을 Instance라고도 부른다.
 	
 	//할일 목록을 리턴해주는 메소드
-	public List<TodoDto> getList(){
+	public List<TodoDto> getList(TodoDto dto){
 		
 		List<TodoDto> list=new ArrayList<TodoDto>();
 		
@@ -44,12 +44,18 @@ public class TodoDao {//이 3가지 원칙만 지키면 dao객체는 오직 한�
 		try {
 			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 			//select 문 작성
-			String sql = "SELECT num, content, regdate"
-					+ " FROM todo"
-					+ " ORDER BY num DESC";
-			pstmt = conn.prepareStatement(sql);
+			String sql = "SELECT *" + 
+					"	FROM" + 
+					"		(SELECT result1.*, ROWNUM AS rnum" + 
+					"		FROM" + 
+					"			(SELECT num,content,regdate" + 
+					"			FROM todo" + 
+					"			ORDER BY num DESC) result1)" + 
+					"	WHERE rnum BETWEEN ? AND ?";
+			pstmt=conn.prepareStatement(sql);
 			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
-
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
 			//select 문 수행하고 ResultSet 받아오기
 			rs = pstmt.executeQuery();
 			//while문 혹은 if문에서 ResultSet으로부터 data 추출
@@ -58,11 +64,11 @@ public class TodoDao {//이 3가지 원칙만 지키면 dao객체는 오직 한�
 			 * 여러개면 while문
 			 */
 			while (rs.next()) {
-				TodoDto dto=new TodoDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setContent(rs.getString("content"));
-				dto.setRegdate(rs.getString("regdate"));
-				list.add(dto);
+				TodoDto tmp=new TodoDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setContent(rs.getString("content"));
+				tmp.setRegdate(rs.getString("regdate"));
+				list.add(tmp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,6 +86,47 @@ public class TodoDao {//이 3가지 원칙만 지키면 dao객체는 오직 한�
 		}
 		
 		return list;
+	}
+	
+	//전체 row의 갯수를 리턴하는 메소드
+	public int getCount() {
+		int count=0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
+			//select 문 작성 (별칭두는 이유 갖고올때 칼럼명으로 가져가야 함)
+			String sql = "select nvl(max(rownum),0) as num" + 
+					" from todo";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
+
+			//select 문 수행하고 ResultSet 받아오기
+			rs = pstmt.executeQuery();
+			//while문 혹은 if문에서 ResultSet으로부터 data 추출
+			/*
+			 * 로우가 1개면 if문
+			 * 여러개면 while문
+			 */
+			if (rs.next()) {
+				count=rs.getInt("num");//별칭 칼럼명 적기
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return count;
 	}
 	
 	//할일 목록 1개를 리턴하는 메소드
