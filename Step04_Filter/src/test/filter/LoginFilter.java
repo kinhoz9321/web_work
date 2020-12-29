@@ -8,10 +8,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+//web.xml 필터 설정 대신에 annotation 을 활용해서 필터를 동작하게 할 수도 있다. web.xml 로그인 필터 설정 삭제하고 만듦. 필터 동작 확인.
+@WebFilter("/private/*")
 public class LoginFilter implements Filter{
 	@Override
 	public void destroy() {
