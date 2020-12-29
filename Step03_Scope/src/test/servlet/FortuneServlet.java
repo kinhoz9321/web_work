@@ -20,10 +20,12 @@ public class FortuneServlet extends HttpServlet{
 		//request scope (요청 영역) 에 담는다고도 한다.
 		
 		//"fortuneToday" 라는 키값으로 String type 담기 (어떤 type 이든 담을 수 있다.)
+		//* request 객체에 어떤 객체를 담는 것 setAttribute - 담은 걸 읽어오는 것 getAttribute
 		req.setAttribute("fortuneToday", fortuneToday);
 		
 		//3. jsp 페이지로 forward 이동해서 응답한다.
-		//forward 이동은 응답을 위임하는 이동 방법이다.
+		//forward 이동은 응답을 위임하는 이동 방법이다. 
+		//(서버내에서 일어나는 이동 - 아무런 표시가 나지 않음, 서블릿이 jsp 에게 응답을 위임할때 사용)
 		//"/test/fortune.jsp" 는 WebContent/test/fortune.jsp 페이지를 가리킨다.
 		//forward 이동할 때는 context path 를 사용하지 않는다.
 		RequestDispatcher rd=req.getRequestDispatcher("/test/fortune.jsp");
