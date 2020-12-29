@@ -22,5 +22,17 @@
   	<!-- 최상위 경로 하위의 모든 요청(/*)에 대해서 동작하게 설정 -->
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <!-- 로그인 필터 정의 -->
+  <filter>
+  	<filter-name>LoginFilter</filter-name>
+  	<filter-class>test.filter.LoginFilter</filter-class>
+  </filter>
+  
+  <!-- 필터 맵핑 -->
+  <filter-mapping>
+  	<filter-name>LoginFilter</filter-name>
+  	<url-pattern>/private/*</url-pattern>
+  </filter-mapping>
 </web-app>
 <!-- 자바 프로그래밍을 하다보면 xml 문서를 작성할 일이 많다. -->
