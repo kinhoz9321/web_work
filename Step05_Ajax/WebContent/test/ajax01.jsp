@@ -12,6 +12,7 @@
 	<button id="getBtn">요청하기</button>
 	<button id="getBtn2">요청하기2</button>
 	<button id="getBtn3">요청하기3</button>
+	<button id="getBtn4">요청하기4</button>
 	<div id="result">
 	
 	</div>
@@ -28,6 +29,7 @@
 				console.log(data);
 			})
 		});
+		
 		document.querySelector("#getBtn2").addEventListener("click",function(){
 			//fetch() 함수를 이용해서 get_data.jsp 페이지에 GET 방식 요청을 한다.
 			fetch("get_data2.jsp").then(function(response){
@@ -39,6 +41,43 @@
 				console.log(data);
 				//응답된 문자열을 아이디가 result 인 요소에 HTML로 해석하라고 넣어주기(getBtn2 아래 div)
 				document.querySelector("#result").innerHTML=data;
+			});
+		});
+		
+		document.querySelector("#getBtn3").addEventListener("click",function(){
+			//fetch() 함수를 이용해서 get_data.jsp 페이지에 GET 방식 요청을 한다.
+			fetch("get_data3.jsp").then(function(response){
+				//JSON 문자열을 서버에서 응답했을 때는 .json() 함수를 호출해서 리턴한다.
+				return response.json();
+			})
+			.then(function(data){
+				//data 는 {num: , name: }형식의 object 이다.
+				console.log(data);
+				//p요소를 동적으로 만들어서
+				let p1=document.createElement("p");
+				//원하는 innerText 를 출력하고
+				p1.innerText="번호:"+data.num+" 이름:"+data.name;
+				//아이디가 result 인 요소에 추가하기
+				document.querySelector("#result").append(p1);
+			});
+		});
+		document.querySelector("#getBtn4").addEventListener("click",function(){
+			//fetch() 함수를 이용해서 get_data.jsp 페이지에 GET 방식 요청을 한다.
+			fetch("get_data4.jsp").then(function(response){
+				//JSON 문자열을 서버에서 응답했을 때는 .json() 함수를 호출해서 리턴한다.
+				return response.json();
+			})
+			.then(function(data){
+				//data 는 배열이다.
+				console.log(data);
+				let ul=document.createElement("ul");
+				for(let i=0; i<data.length; i++){
+					let tmp=data[i];
+					let li=document.createElement("li");
+					li.innerText=tmp;
+					ul.append(li);
+				}
+				document.querySelector("#result").append(ul);
 			});
 		});
 	</script>
