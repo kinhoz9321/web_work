@@ -32,7 +32,7 @@
 		
 		document.querySelector("#getBtn2").addEventListener("click",function(){
 			//fetch() 함수를 이용해서 get_data.jsp 페이지에 GET 방식 요청을 한다.
-			fetch("get_data2.jsp").then(function(response){
+			fetch("get_data2.jsp").then(function(response){//fetch는 promise를 리턴한다. 약속?
 				//단순 문자열인 경우 .text() 를 호출해서 리턴해주면
 				//아래의 then() 안에 있는 함수의 인자로 해당 문자열이 전달된다.
 				return response.text();

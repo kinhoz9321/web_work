@@ -12,6 +12,8 @@
 	<button id="sendBtn">전송</button>
 	<script>
 		/*
+			진짜 중요한 것 03번 꼭 공부!
+			
 			1. 전송 버튼을 누르면 입력한 이름과 주소를 읽어와서
 			
 			2. add.jsp 페이지에 ajax 전송하고
@@ -24,7 +26,7 @@
 			//입력한 문자열 읽어오기
 			let name=document.querySelector("#inputName").value;
 			let addr=document.querySelector("#inputAddr").value;
-			//fetch() 함수를 호출하면서 GET 방식 파라미터로 전달하기 (GET 방식은 주소창에 달고 가는 것)
+			//fetch() 함수를 호출하면서 GET 방식 파라미터로 전달하기 (GET 방식은 주소창에 달고 가는 것) *이거 하나만이라도 꼭 잘하기!*
 			//주소창에 변화가 없으면서 전달.
 			fetch("add.jsp?name="+name+"&addr="+addr)
 			//query string 쿼리 문자열 주소창에 쭉 달고 가는 문자열, fetch 함수 사용방법 (오늘의 진도 사항)
