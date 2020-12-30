@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>/test/get_data.jsp</title>
-</head>
-<body>
-	<p>뭐야?</p>
-</body>
-</html>
+<%
+	System.out.println("요청이 오네유!");
+%>
+몰라 몰라 그냥 문자열이야!
