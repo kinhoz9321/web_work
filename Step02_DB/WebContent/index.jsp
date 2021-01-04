@@ -71,6 +71,7 @@ css로딩 include 시키기
 		 -->
 		<li><a href="todo/list.jsp">할일 목록 보기</a></li>
 		<li><a href="test/signup_form.jsp">회원가입 폼 작성하기</a></li>
+		
 	</ul>
 </div>
 </body>

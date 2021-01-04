@@ -40,11 +40,11 @@
 	링크를 누르면 get방식 요청 (내용을 주소창에 달고감)
 	method="post"라고 해주면 post방식 요청 (내용을 몸통에 달고감)
 	
-	method="get"이라고 하면 주소창에 넘어가는 내용 볼 수 있음. 
+	method="get"이라고 하면 주소창에 넘어가는 내용 볼 수 있음.
 	-->
 		<div class="form-group">
 			<label for="nick">닉네임</label>
-			<input class="form-control" type="text" name="nick" style="width:350px","heighte="30px"/><br />
+			<input class="form-control" type="text" name="nick" style="width:350px","height="30px"/><br />
 		</div>
 		<div class="form-group">
 			<label for="email">이메일 수신 여부</label>

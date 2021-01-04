@@ -30,7 +30,7 @@
 		<div class="form-group">
 			<label for="addr">주소</label>
 			<input type="text" name="addr" id="addr" class="form-control" />
-			<small class="form=text text-muted">실제 사는 주소를 작성하세요</small>
+			<small class="form-text text-muted">실제 사는 주소를 작성하세요</small>
 		</div>
 		<button class="btn btn-success" type="submit">추가</button>
 	</form>

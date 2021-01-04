@@ -25,7 +25,6 @@
 	 thisPage="";
  }
  %>
-
  
  <nav class="navbar navbar-dark bg-warning navbar-expand-sm">
  	<div class="container">
