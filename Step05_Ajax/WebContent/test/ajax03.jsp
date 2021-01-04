@@ -27,7 +27,7 @@
 			let name=document.querySelector("#inputName").value;
 			let addr=document.querySelector("#inputAddr").value;
 			//fetch() 함수를 호출하면서 GET 방식 파라미터로 전달하기 (GET 방식은 주소창에 달고 가는 것) *이거 하나만이라도 꼭 잘하기!*
-			//주소창에 변화가 없으면서 전달.
+			//주소창에 변화가 없으면서 전달. 요청도 하고, 서버에 간단한 정보도 전송할 수 있다. 주소창에 변화가 없을 뿐 나머지는 다 똑같다. get방식.
 			fetch("add.jsp?name="+name+"&addr="+addr)
 			//query string 쿼리 문자열 주소창에 쭉 달고 가는 문자열, fetch 함수 사용방법 (오늘의 진도 사항)
 			.then(function(response){

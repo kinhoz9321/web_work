@@ -83,4 +83,8 @@ animals.join("&") 배열에 있는 것을 &로 쭉 연결해줌
 "cat&dog&elephant"
 
 유틸리티로 바꾼다..? 나 어떻게 만드는지 몰라 알아서 오브젝트로 전달해줘
+
+function toQueryString(obj1){}
+function ajaxPromise(url, method, data){}
+가 만들어져 있다면 훨씬 더 편하게 요청할 수 있다.
 -->
