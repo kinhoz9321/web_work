@@ -11,6 +11,7 @@
 	<ul>
 		<li><a href="test/ajax01.jsp">ajax 테스트1</a></li>
 		<li><a href="promise/test01.jsp">promise 테스트1</a></li>
+		<li><a href="users/signup_form.jsp">회원가입 양식</a></li>
 	</ul>
 </body>
 </html>
