@@ -189,6 +189,44 @@ public class UsersDao {
 		}
 	}
 	
+	//회원의 비밀번호를 수정하는 메소드
+	public boolean updatePwd(UsersDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 insert, update, delete 문 구성
+			//java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist 
+			//(SQL문이 잘못됐을 때 나오는 익셉션)
+			String sql = "UPDATE users"
+					+ " SET pwd=?"
+					+ " WHERE id=? AND pwd=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩할 내용이 있으면 바인딩 한다.
+			pstmt.setString(1, dto.getNewPwd());
+			pstmt.setString(2, dto.getId());
+			pstmt.setString(3, dto.getPwd());
+			flag = pstmt.executeUpdate();//sql 문 실행하고 변화된 row 갯수 리턴 받기
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//인자로 전달된 아이디에 해당하는 가입정보를 삭제하는 메소드
 	public boolean delete(String id) {
 		Connection conn = null;

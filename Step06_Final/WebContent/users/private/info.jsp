@@ -24,6 +24,10 @@
 			<td><%=dto.getId() %></td>
 		</tr>
 		<tr>
+			<th>비밀번호</th>
+			<td><a href="pwd_updateform.jsp">수정하기</a></td>
+		</tr>
+		<tr>
 			<th>이메일</th>
 			<td><%=dto.getEmail() %></td>
 		</tr>
@@ -35,7 +39,8 @@
 	<!-- 이메일만 수정, 비밀번호는 따로 링크 걸기 -->
 	<a href="updateform.jsp">개인 정보 수정</a>
 	<!-- javascript 링크 걸기 -->
-	<a href="javascript:deleteConfirm()">탈퇴</a>
+	<a href="javascript:deleteConfirm()">탈퇴</a><br />
+	<a href="${pageContext.request.contextPath}/index.jsp">인덱스로 돌아가기</a>
 </div>
 <script>
 	function deleteConfirm(){
