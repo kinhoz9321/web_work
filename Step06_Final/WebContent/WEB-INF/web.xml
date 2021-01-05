@@ -4,6 +4,24 @@
   <welcome-file-list><!-- 대문 페이지 설정 -->
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+
+  <!-- 인코딩 필터 정의하기(Tomcat 서버에 필터의 존재를 알린다.) 자동완성 시키기 -->
+  <filter>
+  	<filter-name>EncodingFilter</filter-name><!-- 이름 마음대로 지을 수 있다. -->
+  	<filter-class>test.filter.EncodingFilter</filter-class><!-- 클래스 정확하게 적어주기 -->
+  	<!-- 필터 초기화 파라미터 정의 (어떤 이름으로 어떤 문자열을 갖고 가게 할 것인지 설정) -->
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+  
+  <!-- 인코딩 필터 맵핑하기(어떤 요청에 대해서 필터를 동작하게 할지 동작 조건을 명시한다.) -->
+  <filter-mapping>
+  	<filter-name>EncodingFilter</filter-name><!-- 필터는 여러개 정의할 수 있기 때문에 이름으로 구분한다. -->
+  	<!-- 최상위 경로 하위의 모든 요청(/*)에 대해서 동작하게 설정 -->
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
   
 	<!-- oracle data source 사용하기 위한 설정 -->
 	<resource-ref>

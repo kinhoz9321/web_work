@@ -21,8 +21,57 @@ public class UsersDao {
 	}
 	//UsersDao.getInstance() dao 참조값 받아가는 방법
 	
-	//사용된 패턴이 중요하니 한번 더 살펴보기. isValid의 false, true의 변화 살피기!
+	//인자로 전달된 아이디에 해당하는 가입정보를 리턴해주는 메소드
+	public UsersDto getData(String id) {
+		//회원 정보를 담을 UsersDto
+		UsersDto dto=null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
+			//select 문 작성
+			String sql = "SELECT pwd, email, profile, regdate"
+					+ " FROM users"
+					+ " WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
+			pstmt.setString(1, id);
+			//select 문 수행하고 ResultSet 받아오기
+			rs = pstmt.executeQuery();
+			//while문 혹은 if문에서 ResultSet으로부터 data 추출
+			/*
+			 * 로우가 1개면 if문
+			 * 여러개면 while문
+			 */
+			if (rs.next()) {
+				dto=new UsersDto();
+				dto.setId(id);
+				dto.setPwd(rs.getString("pwd"));
+				dto.setEmail(rs.getString("email"));
+				dto.setProfile(rs.getString("profile"));
+				dto.setRegdate(rs.getString("regdate"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return dto;
+	}
+	
 	//인자로 전달된 정보가 유효한 정보인지 여부를 리턴하는 메소드 (정보가 맞으면 true, 틀리면 false 리턴)
+	//사용된 패턴이 중요하니 한번 더 살펴보기. isValid의 false, true의 변화 살피기!
 	public boolean isValid(UsersDto dto) {
 		//아이디 비밀번호가 유효한 정보인지 여부를 담을 지역 변수 만들고 초기값 부여
 		boolean isValid=false;

@@ -15,7 +15,7 @@
 	<%-- 만일 id 가 null 이 아니면 로그인을 한 상태이다. --%>
 	<%if(id!=null){ %>
 		<p>
-			<strong><%=id %></strong>님 로그인 중...
+			<a href="users/private/info.jsp"><%=id %></a>님 로그인 중...
 			<a href="users/logout.jsp">로그아웃</a>
 		</p>
 	<%} %>
