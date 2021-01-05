@@ -153,4 +153,36 @@ public class UsersDao {
 			return false;
 		}
 	}
+	
+	//인자로 전달된 아이디에 해당하는 가입정보를 삭제하는 메소드
+	public boolean delete(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 insert, update, delete 문 구성
+			String sql = "DELETE FROM users WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩할 내용이 있으면 바인딩 한다.
+			pstmt.setString(1, id);
+			flag = pstmt.executeUpdate();//sql 문 실행하고 변화된 row 갯수 리턴 받기
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

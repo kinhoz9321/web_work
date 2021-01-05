@@ -32,7 +32,17 @@
 			<td><%=dto.getRegdate() %></td>
 		</tr>
 	</table>
+	<!-- javascript 링크 걸기 -->
+	<a href="javascript:deleteConfirm()">탈퇴</a>
 </div>
+<script>
+	function deleteConfirm(){
+		let isDelete=confirm("<%=id%> 회원님 탈퇴 하시겠습니까?");
+		if(isDelete){
+			location.href="${pageContext.request.contextPath}/users/private/delete.jsp";
+		}
+	}
+</script>
 </body>
 </html>
 <!-- 
@@ -42,4 +52,12 @@
 
 users에 가서 하위 폴더로 private 만들기
 src test.filter 복사 붙여넣기
+login filter 설정 바꾸기
+web.xml 설정 추가하기
+
+confirm() true, false 리턴
+확인 = t
+취소 = f
+
+경로는 항상 절대경로로 써주는 것이 좋다. 수업이니까 상대경로로 씀. 치기 힘들어서.
  -->
