@@ -32,6 +32,8 @@
 			<td><%=dto.getRegdate() %></td>
 		</tr>
 	</table>
+	<!-- 이메일만 수정, 비밀번호는 따로 링크 걸기 -->
+	<a href="updateform.jsp">개인 정보 수정</a>
 	<!-- javascript 링크 걸기 -->
 	<a href="javascript:deleteConfirm()">탈퇴</a>
 </div>
