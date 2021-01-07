@@ -21,17 +21,19 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/signup.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
-<div class="container">
+<jsp:include page="../include/navbar.jsp"></jsp:include>
+<div class="container form-group">
 	<h1>알림</h1>
 	<%if(isSuccess){ %>
-		<p>
+		<p class="form-control">
 			<strong><%=id %></strong> 회원님 가입 되었습니다.
 			<a href="loginform.jsp">로그인 하러가기</a>
 		</p>
 	<%}else{ %>
-		<p>
+		<p class="form-control">
 			가입이 실패 했습니다.
 			<a href="signup_form.jsp">다시 가입</a>
 		</p>

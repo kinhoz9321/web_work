@@ -5,20 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/loginform.jsp</title>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
+<jsp:include page="../include/navbar.jsp"></jsp:include>
 <div class="container">
-	<h1>로그인 폼 입니다.</h1>
 	<form action="login.jsp" method="post">
-		<div>
+		<div class="form-group">
 			<label for="id">아이디</label>
-			<input type="text" name="id" id="id"/>
+			<input class="form-control" type="text" name="id" id="id"/>
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="pwd">비밀번호</label>
-			<input type="text" name="pwd" id="pwd"/>
+			<input class="form-control" type="text" name="pwd" id="pwd"/>
 		</div>
-		<button type="submit">로그인</button>
+		<button type="submit" class="btn btn-success">로그인</button>
 	</form>
 </div>
 </body>

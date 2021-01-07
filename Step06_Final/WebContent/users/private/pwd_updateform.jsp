@@ -5,8 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/private/pwd_updateform.jsp</title>
+<jsp:include page="../../include/resource.jsp"></jsp:include>
 </head>
 <body>
+<jsp:include page="../../include/navbar.jsp"></jsp:include>
+<div class="container">
+	<nav>
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="${pageContext.request.contextPath}">Home</a>
+			</li>
+			<li class="breadcrumb-item">
+			<a href="${pageContext.request.contextPath}/users/info.jsp">가입 정보 확인</a>
+			</li>
+		</ul>
+	</nav>
+</div>
 <div class="container">
 	<h1>비밀번호 수정 폼</h1>
 	<form action="pwd_update.jsp" method="post" id="myForm">

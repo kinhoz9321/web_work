@@ -14,11 +14,22 @@
 <head>
 <meta charset="UTF-8">
 <title>/users/info.jsp</title>
+<jsp:include page="../../include/resource.jsp"></jsp:include>
 </head>
 <body>
+<jsp:include page="../../include/navbar.jsp"></jsp:include>
 <div class="container">
-	<h1>가입 정보 입니다.</h1>
-	<table>
+	<nav>
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="${pageContext.request.contextPath}">Home</a>
+			</li>
+			<li class="breadcrumb-item">가입 정보 확인</li>
+		</ul>
+	</nav>
+</div>
+<div class="container">
+	<table class="table table-striped">
 		<tr>
 			<th>아이디</th>
 			<td><%=dto.getId() %></td>
@@ -37,10 +48,10 @@
 		</tr>
 	</table>
 	<!-- 이메일만 수정, 비밀번호는 따로 링크 걸기 -->
-	<a href="updateform.jsp">개인 정보 수정</a>
+	<button class="btn btn-success"><a href="updateform.jsp" style="color:white">개인 정보 수정</a></button>
 	<!-- javascript 링크 걸기 -->
-	<a href="javascript:deleteConfirm()">탈퇴</a><br />
-	<a href="${pageContext.request.contextPath}/index.jsp">인덱스로 돌아가기</a>
+	<button class="btn btn-danger"><a href="javascript:deleteConfirm()" style="color:white">탈퇴</a></button>
+	<button class="btn btn-warning"><a href="${pageContext.request.contextPath}/index.jsp" style="color:white">인덱스로 돌아가기</a></button>
 </div>
 <script>
 	function deleteConfirm(){
