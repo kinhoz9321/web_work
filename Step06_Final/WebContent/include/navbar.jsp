@@ -42,12 +42,25 @@
 		<!-- 화면을 좁히면 목록이 사라짐 버튼을 눌렀을 때 접었다 폈다 할 목록 적기 -->
 		<%-- <%=thisPage.equals("todo")?"active":"" --%>
 		<div class="collapse navbar-collapse" id="topNav">
-			<ul class="navbar-nav">
+			<ul class="navbar-nav mr-auto">
 				<li class="nav-item <%=thisPage.equals("cafe")?"active":"" %>">
 					<!-- 가급적이면 절대경로를 쓸 것. context 경로 걸기. cpath+tab -->
 					<a class="nav-link" href="${pageContext.request.contextPath}/cafe/list.jsp">글 목록 보기</a>
 				</li>
 			</ul>
+			<%
+				//로그인된 아이디가 있는지 읽어와 본다.
+				String id=(String)session.getAttribute("id");
+			%>
+			<%if(id==null){ %>
+				<a class="btn btn-success btn-sm" 
+				href="${pageContext.request.contextPath }/users/loginform.jsp">로그인</a>
+			<%}else{ %>
+				<span class="navbar-text">
+					<a href="${pageContext.request.contextPath }/users/private/info.jsp"><%=id %></a>
+					<a class="btn btn-warning btn-sm" href="${pageContext.request.contextPath }/users/logout.jsp">로그아웃</a>
+				</span>
+			<%} %>
 		</div>
 	</div>
 </nav>
