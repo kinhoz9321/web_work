@@ -34,7 +34,8 @@
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getWriter() %></td>
 				<td><%=tmp.getTitle() %></td>
-				<td><%=tmp.getOrgFileName() %></td>
+				<!-- GET 방식 파라미터로 파일번호를 들고 갈 수 있게 해줌 -->
+				<td><a href="download.jsp?num=<%=tmp.getNum()%>"><%=tmp.getOrgFileName() %></a></td>
 				<td><%=tmp.getFileSize() %></td>
 				<td><%=tmp.getRegdate() %></td>
 			</tr>

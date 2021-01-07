@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="test.file.dao.FileDao"%>
 <%@page import="test.file.dto.FileDto"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -8,6 +9,11 @@
 	//Tomcat 서버를 실행했을 때 WebContent/upload 폴더의 실제 경로 얻어오기
 	String realPath=application.getRealPath("/upload");
 	System.out.println("realPath:"+realPath);
+	
+	File f=new File(realPath);
+	if(!f.exists()){
+		f.mkdir();
+	}
 	//최대 업로드 사이즈 설정
 	int sizeLimit=1024*1024*50; //50 MByte
 	/*
