@@ -26,7 +26,7 @@
  }
  %>
  
- <nav class="navbar navbar-dark bg-warning navbar-expand-sm fixed-top">
+ <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
  	<div class="container">
  		<a class="navbar-brand" href="${pageContext.request.contextPath}/">
  			<img style="width:30px","heighte="30px" src="${pageContext.request.contextPath}/images/rabbit_1.png"/>
