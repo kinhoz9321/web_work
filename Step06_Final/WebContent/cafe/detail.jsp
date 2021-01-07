@@ -58,6 +58,7 @@
 			<td><%=dto.getRegdate() %></td>
 		</tr>
 		<tr>
+		<!-- form-control, disabled 출력 용도 -->
 			<th>내용</th>
 			<td><%=dto.getContent() %></td>
 		</tr>
