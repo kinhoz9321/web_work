@@ -4,8 +4,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-CafeDto dto=new CafeDto();
-List<CafeDto> list=CafeDao.getInstance().getList();
+	final int PAGE_ROW_COUNT=5;
+	final int PAGE_DISPLAY_COUNT=5;
+	
+	int pageNum=1;
+	String strPageNum=request.getParameter("pageNum");
+	if(strPageNum!=null){
+		pageNum=Integer.parseInt(strPageNum);
+	}
+	
+	int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
+	int endRowNum=pageNum*PAGE_ROW_COUNT;
+	
+	CafeDto dto=new CafeDto();
+	dto.setStartRowNum(startRowNum);
+	dto.setEndRowNum(endRowNum);
+	
+	List<CafeDto> list=CafeDao.getInstance().getList(dto);
+	
+	int startPageNum=1+((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+	int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
+	int totalRow=CafeDao.getInstance().getCount();
+	int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+	if(endPageNum > totalPageCount){
+		endPageNum=totalPageCount;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -54,6 +77,32 @@ List<CafeDto> list=CafeDao.getInstance().getList();
 		<%} %>
 		</tbody>
 	</table>
+	<nav>
+		<ul class="pagination pagination justify-content-center">
+			<%if(startPageNum!=1){ %>
+				<li class="page-item">
+					<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1%>">prev</a>
+				</li>
+			<%} %>
+			<%for(int i=startPageNum; i<=endPageNum; i++){ %>
+				<%if(i==pageNum){ %>
+					<li class="page-item active">
+						<a class="page-link" href="list.jsp?pageNum=<%=i%>"><%=i %></a>
+					</li>
+				
+				<%}else{ %>
+					<li class="page-item">
+						<a class="page-link" href="list.jsp?pageNum=<%=i%>"><%=i %></a>
+					</li>
+				<%} %>
+			<%} %>
+			<%if(endPageNum < totalPageCount){ %>
+				<li class="page-item">
+					<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1%>">Next</a>
+				</li>
+			<%} %>
+		</ul>
+	</nav>
 	<button class="btn btn-warning">
 		<a href="${pageContext.request.contextPath}/index.jsp" style="color:white">인덱스로 돌아가기</a>
 	</button>
