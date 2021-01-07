@@ -21,3 +21,17 @@ CREATE TABLE board_cafe(
 
 -- 게시글의 번호를 얻어낼 시퀀스
 CREATE SEQUENCE board_cafe_seq;
+
+-- 업로드된 파일의 정보를 저장할 테이블
+CREATE TABLE board-file(
+	num NUMBER PRIMARY KEY,
+	writer VARCHAR2(100) NOT NULL,
+	title VARCHAR2(100)	NOT NULL,
+	orgFileName VARCHAR2(100) NOT NULL, --원본 파일명
+	saveFileName VARCHAR2(100) NOT NULL, --서버에 실제로 저장된 파일명
+	fileSize NUMBER NOT NULL, --파일의 크기
+	regdate DATE
+);
+
+-- 파일의 번호를 얻어낼 시퀀스
+CREATE SEQUENCE board_file_seq;
