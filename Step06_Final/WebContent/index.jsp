@@ -27,7 +27,7 @@
 		<li class="list-group-item"><a href="users/signup_form.jsp" style="color:black">회원가입</a></li>
 		<li class="list-group-item"><a href="users/loginform.jsp" style="color:black">로그인</a></li>
 		<li class="list-group-item"><a href="cafe/list.jsp" style="color:black">카페 글 목록 보기</a></li>
-		<li><a href="file/list.jsp">자료실 목록 보기</a></li>
+		<li class="list-group-item"><a href="file/list.jsp" style="color:black">자료실 목록 보기</a></li>
 	</ul>
 </div>
 </body>

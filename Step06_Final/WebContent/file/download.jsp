@@ -22,8 +22,8 @@
     
     //3. 서버의 파일시스템(upload) 에 저장된 파일에서 바이트 알갱이를 읽어서 출력한다. (다운로드)
     //3. upload 폴더에 저장된 파일을 읽어서 파일 데이터를 응답한다. 
-	String orgFileName=dto.getOrgFileName();
-	String saveFileName=dto.getSaveFileName();
+	String orgFileName=dto.getOrgFileName();//원본 파일명
+	String saveFileName=dto.getSaveFileName();//저장된 파일명
 	//다운로드 시켜줄 파일의 실제 경로 구성하기 
 	String path=request.getServletContext().getRealPath("/upload")+
 					File.separator+saveFileName;
@@ -45,17 +45,17 @@
 	}
 	
 	//응답 헤더 정보 설정
-	response.setHeader("Content-Disposition","attachment;filename="+encodedName);
+	response.setHeader("Content-Disposition","attachment;filename="+encodedName);//다운로드 하기 전 에파일명 알려주기
 	response.setHeader("Content-Transfer-Encoding", "binary");
 	
 	//다운로드할 파일의 크기 읽어와서 다운로드할 파일의 크기 설정
-	response.setContentLengthLong(dto.getFileSize());
+	response.setContentLengthLong(dto.getFileSize());//다운로드 하기 전에 파일의 크기 알려주기
 	
 	//클라이언트에게 출력할수 있는 스트림 객체 얻어오기
 	BufferedOutputStream bos=
 		new BufferedOutputStream(response.getOutputStream());
-	//한번에 최대 1M byte 씩 읽어올수 있는 버퍼
-	byte[] buffer=new byte[1024*1024];
+	//한번에 최대 1M byte 씩 읽어올수 있는 버퍼 
+	byte[] buffer=new byte[1024*1024];//바이트 배열을 통해서
 	int readedByte=0;
 	//반복문 돌면서 출력해주기
 	while(true){
@@ -79,3 +79,10 @@
 
 </body>
 </html>
+<!-- 
+[실제 파일을 응답하는 객체]
+BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+bos.write(buffer, 0, readedByte);
+
+객체의 의미 알고 쓰기
+ -->
