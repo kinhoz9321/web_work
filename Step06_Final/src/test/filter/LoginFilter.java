@@ -1,6 +1,7 @@
 package test.filter;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -35,20 +36,37 @@ public class LoginFilter implements Filter{
 		HttpSession session=req.getSession();
 		//로그인된 아이디가 있는지 읽어와 본다.
 		String id=(String)session.getAttribute("id");
-		//만일 로그인 된 상태라면
 		
 		if(id!=null) {
 			//2. 만일 로그인을 했으면 관여하지 않고 요청의 흐름을 이어간다.
 			chain.doFilter(request, response);
 		}else {
+			
+			/*
+			 * 로그인 페이지로 강제 리다일렉트 됬다면
+			 * 로그인 성공 후에 원래 가려던 목적지로 다시 보내야 하고
+			 * GET 방식 전송 파라미터가 있다면 파라미터 정보도 같이 가지고 갈 수 있도록 해야한다.
+			 * 
+			 * */
+			//원래 가려던 url정보 읽어오기
+			String url=req.getRequestURI();
+			//GET 방식 전송 파라미터를 query 문자열로 읽어오기 (이게 query a=xxx&b=xxx&c=xxx )
+			String query=req.getQueryString();
+			//특수 문자는 인코딩을 해야한다.
+			String encodedUrl=null;
+			if(query==null) {//전송 파라미터가 없다면
+				encodedUrl=URLEncoder.encode(url);
+			}else {
+				// 원래 목적지가 /test/xxx.jsp 라고 가정하면 아래와 같은 형식의 문자열을 만든다.
+				// "/test/xxx.jsp?a=xxx&b=xxx ..."
+				encodedUrl=URLEncoder.encode(url+"?"+query);
+			}
 			//3. 로그인을 하지 않았으면 로그인 폼으로 이동할 수 있도록 *리다일렉트 응답*을 준다.
 			String cPath=req.getContextPath();
 			//ServletResponse type을 HttpServletResponse type 으로 casting
 			HttpServletResponse res=(HttpServletResponse)response;
-			res.sendRedirect(cPath+"/users/loginform.jsp");//리다일렉트 객체(요청을 다시 하라는 응답)
-			//다시 요청할 경로를 주고 있음
-			//sendRedirect() 자체가 응답.
-			//로그인 성공 후에 가야할 목적지 정보를 갖고가는 로직처리를 해야함.
+			//리다일렉트 시킬때 원래 목적지 정보를 url 라는 파라미터 명으로 같이 보낸다.
+			res.sendRedirect(cPath+"/users/loginform.jsp?url="+encodedUrl);
 		}
 	}
 		
@@ -60,3 +78,10 @@ public class LoginFilter implements Filter{
 	}
 	
 }
+/*
+ *url 특정자원을 찾아가는 식별자
+ *주소창의 위치를 나타낸다. 
+ *uri는 url보다 조금 더 자세한 것
+ *url이 더 상위개념이다.
+ * 
+ */

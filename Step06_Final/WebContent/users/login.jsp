@@ -1,8 +1,13 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="test.users.dao.UsersDao"%>
 <%@page import="test.users.dto.UsersDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//로그인 후 가야하는 목적지 정보
+	String url=request.getParameter("url");
+	//로그인 실패를 대비해서 목적지 정보를 인코딩한 결과도 준비한다.
+	String encodedUrl=URLEncoder.encode(url);
 	//1. 폼 전송되는 아이디와 비밀번호를 읽어온다.
 	String id=request.getParameter("id");
 	String pwd=request.getParameter("pwd");
@@ -27,12 +32,12 @@
 		session.setAttribute("id", id);%>
 		<p>
 			<strong><%=id %></strong>님 로그인 되었습니다.
-			<a href="${pageContext.request.contextPath}/index.jsp">확인</a>
+			<a href="<%=url %>">확인</a>
 		</p>
 	<%}else{ %>
 		<p>
 			아이디 혹은 비밀번호가 틀려요!
-			<a href="loginform.jsp">다시 시도</a>
+			<a href="loginform.jsp?url=<%=encodedUrl %>">다시 시도</a>
 		</p>
 	<%} %>
 </div>
