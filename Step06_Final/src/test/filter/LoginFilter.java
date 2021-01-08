@@ -48,6 +48,7 @@ public class LoginFilter implements Filter{
 			res.sendRedirect(cPath+"/users/loginform.jsp");//리다일렉트 객체(요청을 다시 하라는 응답)
 			//다시 요청할 경로를 주고 있음
 			//sendRedirect() 자체가 응답.
+			//로그인 성공 후에 가야할 목적지 정보를 갖고가는 로직처리를 해야함.
 		}
 	}
 		

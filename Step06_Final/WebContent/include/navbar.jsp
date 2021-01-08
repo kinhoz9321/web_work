@@ -47,6 +47,10 @@
 					<!-- 가급적이면 절대경로를 쓸 것. context 경로 걸기. cpath+tab -->
 					<a class="nav-link" href="${pageContext.request.contextPath}/cafe/list.jsp">글 목록 보기</a>
 				</li>
+				<li class="nav-item <%=thisPage.equals("file")?"active":"" %>">
+					<!-- 가급적이면 절대경로를 쓸 것. context 경로 걸기. cpath+tab -->
+					<a class="nav-link" href="${pageContext.request.contextPath}/file/list.jsp">자료실</a>
+				</li>
 			</ul>
 			<%
 				//로그인된 아이디가 있는지 읽어와 본다.
@@ -64,3 +68,6 @@
 		</div>
 	</div>
 </nav>
+<!-- 
+active bootstrap css 활용
+ -->
