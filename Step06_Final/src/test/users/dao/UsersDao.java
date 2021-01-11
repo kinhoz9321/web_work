@@ -21,6 +21,52 @@ public class UsersDao {
 	}
 	//UsersDao.getInstance() dao 참조값 받아가는 방법
 	
+	//인자로 전달된 아이디가 DB에 존재하는지 여부를 리턴하는 메소드
+	public boolean isExist(String id) {
+		//아이디가 이미 존재하는지 여부를 담을 지역변수 선언하고 초기값 지정
+		//불리언으로 기본값을 지정해두고, 조건부로 기본값이 if문 안에 들어왔으면 true 로 바뀌는 패턴. 건너뛰면 false. - 자주 나오는 패턴 기억하기!
+		boolean isExist=false;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
+			//select 문 작성
+			String sql = "SELECT *"
+					+ " FROM users"
+					+ " WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
+			pstmt.setString(1, id);
+			//select 문 수행하고 ResultSet 받아오기
+			rs = pstmt.executeQuery();
+			//while문 혹은 if문에서 ResultSet으로부터 data 추출
+			/*
+			 * 로우가 1개면 if문
+			 * 여러개면 while문
+			 */
+			if (rs.next()) {
+				isExist=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		//아이디가 이미 존재하는지 여부를 리턴해준다.
+		return isExist;
+	}
+	
 	//인자로 전달된 아이디에 해당하는 가입정보를 리턴해주는 메소드
 	public UsersDto getData(String id) {
 		//회원 정보를 담을 UsersDto
