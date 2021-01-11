@@ -60,7 +60,10 @@
 		<tr>
 		<!-- form-control, disabled 출력 용도 -->
 			<th>내용</th>
-			<td><%=dto.getContent() %></td>
+			<td>
+				<div><%=dto.getContent() %></div>
+			</td>
+			<!-- 마크업 자체를 출력을 하면 웹브라우저가 알아서 해석해줌 -->
 		</tr>
 	</table>
 	<%
