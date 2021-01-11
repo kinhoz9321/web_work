@@ -39,6 +39,11 @@
 </div>
 <div class="container">
 	<table class="table table-striped">
+		<colgroup>
+			<col width="200" style="border:solid 1px lightgrey"/><!-- 첫번째 칼럼의 폭을 200px로 하겠다. -->
+			<col style="border:solid 1px lightgrey"/><!-- column의 갯수만큼 있어야 하기 때문에 아무것도 안써도 놔둬야 한다. -->
+			<!-- style 표에 border 넣어서 칸 분류하기 -->
+		</colgroup>
 		<tr>
 			<!-- 가입 정보 확인에서 사진이 나온다. -->
 			<th>프로필 이미지</th>
