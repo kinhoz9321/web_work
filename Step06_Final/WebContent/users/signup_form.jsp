@@ -34,12 +34,13 @@
 			<!-- 비밀번호, 비밀번호 확인이 같지 않을 때 is-invalid / 같을 때 is-valid 자바스크립트로 조건부 출력하게 만든다. -->
 			<input class="form-control" type="password" name="pwd" id="pwd"/>
 			<small class="form-text text-muted">비밀번호는 4글자 이상 입력해야 합니다.</small>
-			<div class="invalid-feedback">비밀번호를 확인하세요</div>
+			<div class="invalid-feedback">사용가능한 비밀번호 입니다.</div>
 		</div>
 		<div class="form-group">
 			<label for="pwd2">비밀번호 확인</label>
-			<input class="form-control" type="password" id="pwd2"/>
-			<div class="invalid-feedback">비밀번호를 확인하세요</div>
+			<input class="form-control" type="password" name="pwd2" id="pwd2"/>
+			<div class="invalid-feedback">비밀번호가 다릅니다</div>
+			<div class="valid-feedback">비밀번호를 확인하였습니다.</div>
 		</div>
 		<div class="form-group">
 			<label for="email">이메일</label>
@@ -52,7 +53,7 @@
 	//아이디의 유효성 여부를 관리할 변수 만들고 초기값 부여하기
 	let isIdValid=false;
 	let isPwdValid=false;
-	
+	let isPwd2Valid=false;
 	//폼에 submit 이벤트가 일어났을 때 jquery 를 활용해서 폼에 입력한 내용 검증하기
 	
 	//id가 myForm 인 요소에 submit 이벤트가 일어났을 때 실행할 함수 등록
@@ -91,16 +92,21 @@
 		
 		//일단 모든 검증 클래스를 제거하고
 		$("#pwd").removeClass("is-valid is-invalid");
+		$("#pwd2").removeClass("is-valid is-invalid");
 		
 		//두 비밀번호가 같은지 확인해서 
 		if(pwd==pwd2){//만일 같으면
 			//유효하다는 클래스를 추가
 			$("#pwd").addClass("is-valid");//addClass = 클래스를 추가
+			$("#pwd2").addClass("is-valid");
 			isPwdValid=true;
+			isPwd2Valid=true;
 		}else{//다르면
 			//유효하지 않다는 클래스를 추가
 			$("#pwd").addClass("is-invalid");
+			$("#pwd2").addClass("is-invalid");
 			isPwdValid=false;
+			isPwd2Valid=false;
 		}
 	});
 	
