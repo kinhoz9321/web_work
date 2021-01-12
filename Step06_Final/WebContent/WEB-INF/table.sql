@@ -35,3 +35,15 @@ CREATE TABLE board-file(
 
 -- 파일의 번호를 얻어낼 시퀀스
 CREATE SEQUENCE board_file_seq;
+
+-- 갤러리 테이블
+CREATE TABLE board_gallery(
+	num NUMBER PRIMARY KEY,
+	writer VARCHAR2(100),
+	caption VARCHAR2(100),
+	imagePath VARCHAR2(100),
+	regdate DATE
+);
+
+-- 갤러리 시퀀스
+CREATE SEQUENCE board_gallery_seq;

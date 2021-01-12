@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 //web.xml 필터 설정 대신에 annotation 을 활용해서 필터를 동작하게 할 수도 있다. web.xml 로그인 필터 설정 삭제하고 만듦. 필터 동작 확인.
 //로그인 해야만 응답하는 필터
-@WebFilter(urlPatterns = {"/users/private/*","/cafe/private/*","/file/private/*"})
+@WebFilter(urlPatterns = {"/gallery/private/*","/users/private/*","/cafe/private/*","/file/private/*"})
 public class LoginFilter implements Filter{
 	@Override
 	public void destroy() {
