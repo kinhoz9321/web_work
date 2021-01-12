@@ -14,7 +14,7 @@ CREATE TABLE board_cafe(
 	num NUMBER PRIMARY KEY, --글번호
 	writer VARCHAR2(100) NOT NULL, --작성자 (로그인된 아이디)
 	title VARCHAR2(100) NOT NULL, --제목
-	content CLOB, --글 내용
+	content CLOB, --글 내용 (VARCHAR2로는 감당이 안됨으로 CLOB로 설계함)
 	viewCount NUMBER, --조회수
 	regdate DATE --글 작성일
 );
