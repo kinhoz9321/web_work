@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="test.file.dao.FileDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -31,6 +32,8 @@
 		condition="";//검색조건
 	}
 	
+	//특수기호를 인코딩한 키워드를 미리 준비한다.
+	String encodedK=URLEncoder.encode(keyword);
 	
 	FileDto dto=new FileDto();
 	dto.setStartRowNum(startRowNum);
@@ -49,12 +52,20 @@
 			//검색 키워드를 FileDto에 담아서 전달한다.
 			dto.setTitle(keyword);
 			dto.setOrgFileName(keyword);
+			//제목+파일명 검색일 때 호출하는 메소드를 이용해서 목록 얻어오기
+			list=FileDao.getInstance().getListTF(dto);
+			//제목+파일명 검색일 때 호출하는 메소드를 이용해서 row 의 갯수 얻어오기
+			totalRow=FileDao.getInstance().getCountTF(dto);
 			
 		}else if(condition.equals("title")){//제목 검색인 경우
 			dto.setTitle(keyword);
+			list=FileDao.getInstance().getListT(dto);
+			totalRow=FileDao.getInstance().getCountT(dto);
 		
 		}else if(condition.equals("writer")){//작성자 검색인 경우
 			dto.setWriter(keyword);
+			list=FileDao.getInstance().getListW(dto);
+			totalRow=FileDao.getInstance().getCountW(dto);
 			
 		}//다른 검색 조건을 추가하고 싶다면 아래에 else if() 를 계속 추가하면 된다.
 	}else{//검색 키워드가 넘어오지 않는다면 (1개의 블럭)
@@ -145,47 +156,55 @@ ctrl+f 해서 replace 하기
 		<ul class="pagination pagination justify-content-center">
 			<%if(startPageNum!=1){ %>
 				<li class="page-item">
-					<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1%>">prev</a>
+					<a class="page-link" href="list.jsp?pageNum=<%=startPageNum-1%>&condition=<%=condition%>&keyword=<%=encodedK%>">prev</a>
 				</li>
 			<%} %>
 			<%for(int i=startPageNum; i<=endPageNum; i++){ %>
 				<%if(i==pageNum){ %>
 					<li class="page-item active">
-						<a class="page-link" href="list.jsp?pageNum=<%=i%>"><%=i %></a>
+						<a class="page-link" href="list.jsp?pageNum=<%=i%>&condition=<%=condition%>&keyword=<%=encodedK%>"><%=i %></a>
 					</li>
 				
 				<%}else{ %>
 					<li class="page-item">
-						<a class="page-link" href="list.jsp?pageNum=<%=i%>"><%=i %></a>
+						<a class="page-link" href="list.jsp?pageNum=<%=i%>&condition=<%=condition%>&keyword=<%=encodedK%>"><%=i %></a>
 					</li>
 				<%} %>
 			<%} %>
 			<%if(endPageNum < totalPageCount){ %>
 				<li class="page-item">
-					<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1%>">Next</a>
+					<a class="page-link" href="list.jsp?pageNum=<%=endPageNum+1%>&condition=<%=condition%>&keyword=<%=encodedK%>">Next</a>
 				</li>
 			<%} %>
 		</ul>
 	</nav>
 	<!-- filedao dynamic query 사용해야함. -->
 	<form class="row g-3 justify-content-center" action="list.jsp" method="get">
-		<div class="col-auto">
-			<label for="condition">검색조건</label>
-		</div>
+		<label for="condition">검색조건</label>
 		<div class="col-auto">
 			<select class="form-control" style="width:200px" name="condition" id="condition">
-				<option value="title_filename">제목+파일명</option>
-				<option value="title">제목</option>
-				<option value="writer">작성자</option>
+			
+				<option value="title_filename" <%=condition.equals("title_filename")?"selected":"" %>>제목+파일명</option>
+				<option value="title" <%=condition.equals("title")?"selected":"" %>>제목</option>
+				<option value="writer" <%=condition.equals("writer")?"selected":"" %>>작성자</option>
 			</select>
 		</div>
 		<div class="col-auto">
-			<input class="form-control" style="width:500px" type="text" name="keyword" placeholder="검색어"/>
+			<input class="form-control" style="width:500px" type="text" name="keyword" placeholder="검색어" value="<%=keyword%>"/><!-- keyword 원본 문자열 -->
 		</div>
 		<div class="col-auto">
 			<button class="btn btn-success" type="submit">검색</button>
 		</div>
 	</form>
+	<%--
+		만일 검색 키워드가 존재한다면 몇개의 글이 검색되었는지 알려준다. 
+		
+	--%>
+	<%if(!keyword.equals("")){ %>
+		<div class="alert text-center">
+			<strong><%=totalRow %></strong> 개의 자료가 검색 되었습니다.
+		</div>
+	<%} %>
 	<br />
 	<button class="btn btn-warning">
 		<a href="${pageContext.request.contextPath}/index.jsp" style="color:white">인덱스로 돌아가기</a>
