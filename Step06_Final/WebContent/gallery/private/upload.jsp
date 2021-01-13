@@ -51,7 +51,7 @@
 	//업로드된 파일 정보를 GalleryDto에 담아서
 	GalleryDto dto=new GalleryDto();
 	dto.setCaption(caption);
-	dto.setImagePath("/upload"+saveFileName);
+	dto.setImagePath("/upload/"+saveFileName);
 	dto.setWriter(writer);
 	//DB에 저장
 	GalleryDao.getInstance().insert(dto);

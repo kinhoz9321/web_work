@@ -41,6 +41,7 @@
 		</button>
 		<!-- 화면을 좁히면 목록이 사라짐 버튼을 눌렀을 때 접었다 폈다 할 목록 적기 -->
 		<%-- <%=thisPage.equals("todo")?"active":"" --%>
+		<!-- navbar 목록에 올라가게 만드는 것 -->
 		<div class="collapse navbar-collapse" id="topNav">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item <%=thisPage.equals("cafe")?"active":"" %>">
@@ -50,6 +51,10 @@
 				<li class="nav-item <%=thisPage.equals("file")?"active":"" %>">
 					<!-- 가급적이면 절대경로를 쓸 것. context 경로 걸기. cpath+tab -->
 					<a class="nav-link" href="${pageContext.request.contextPath}/file/list.jsp">자료실</a>
+				</li>
+				<li class="nav-item <%=thisPage.equals("gallery")?"active":"" %>">
+					<!-- 가급적이면 절대경로를 쓸 것. context 경로 걸기. cpath+tab -->
+					<a class="nav-link" href="${pageContext.request.contextPath}/gallery/list.jsp">갤러리</a>
 				</li>
 			</ul>
 			<%

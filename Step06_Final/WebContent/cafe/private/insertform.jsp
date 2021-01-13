@@ -44,9 +44,11 @@
 			textarea의 크기가 스마트에디터의 크기가 된다.
 			 -->
 		</div>
-		<button class="btn btn-success" type="submit" onclick="submitContents(this);">저장</button>
-		<!-- SmartEditor onclick="submitContents(this); 추가 -->
-		<button class="btn btn-danger"><a href="${pageContext.request.contextPath}/cafe/list.jsp" style="color:white">취소</a></button>
+		<div class="text-center">
+			<button class="btn btn-success" type="submit" onclick="submitContents(this);">저장</button>
+			<!-- SmartEditor onclick="submitContents(this); 추가 -->
+			<button class="btn btn-danger"><a href="${pageContext.request.contextPath}/cafe/list.jsp" style="color:white">취소</a></button>
+		</div>
 	</form>
 </div>
 <%--

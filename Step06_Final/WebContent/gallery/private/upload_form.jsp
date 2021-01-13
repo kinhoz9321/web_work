@@ -30,7 +30,7 @@
 		</div>
 		<div class="form-group">
 			<label for="image">이미지</label>
-			<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
+			<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG, .jfif"/>
 		</div>
 		<button type="submit" class="btn btn-success">업로드</button>
 		<button type="reset" class="btn btn-danger">취소</button>
