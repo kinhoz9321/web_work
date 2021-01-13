@@ -18,6 +18,48 @@ public class GalleryDao {
 		}
 		return dao;
 	}
+	
+	//
+	public int getCount() {
+		int count=0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
+			//select 문 작성 (rownum 최대값, 없으면 0)
+			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
+					+ " FROM board_gallery";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
+
+			//select 문 수행하고 ResultSet 받아오기
+			rs = pstmt.executeQuery();
+			//while문 혹은 if문에서 ResultSet으로부터 data 추출
+			/*
+			 * 로우가 1개면 if문
+			 * 여러개면 while문
+			 */
+			if (rs.next()) {
+				count=rs.getInt("num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return count;
+	}
+	
 	//업로드 된 사진 하나의 정보를 저장하는 메소드
 	public boolean insert(GalleryDto dto) {
 		Connection conn = null;
@@ -55,7 +97,7 @@ public class GalleryDao {
 	}
 	
 	//업로드 된 모든 사진의 정보를 리턴하는 메소드
-	public List<GalleryDto> getList(){
+	public List<GalleryDto> getList(GalleryDto dto){
 		List<GalleryDto> list=new ArrayList<GalleryDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -63,11 +105,18 @@ public class GalleryDao {
 		try {
 			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 			//select 문 작성
-			String sql = "SELECT * FROM board_gallery"
-					+ " ORDER BY num DESC";
+			String sql = "SELECT *" + 
+					"	FROM" + 
+					"		(SELECT result1.*, ROWNUM AS rnum" + 
+					"		FROM" + 
+					"			(SELECT num, writer, caption, imagePath, regdate" + 
+					"			FROM board_gallery" + 
+					"			ORDER BY num DESC) result1)" + 
+					"	WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
-
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
 			//select 문 수행하고 ResultSet 받아오기
 			rs = pstmt.executeQuery();
 			//while문 혹은 if문에서 ResultSet으로부터 data 추출
@@ -76,13 +125,13 @@ public class GalleryDao {
 			 * 여러개면 while문
 			 */
 			while (rs.next()) {
-				GalleryDto dto=new GalleryDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("writer"));
-				dto.setCaption(rs.getString("caption"));
-				dto.setImagePath(rs.getString("imagePath"));
-				dto.setRegdate(rs.getString("regdate"));
-				list.add(dto);
+				GalleryDto dto1=new GalleryDto();
+				dto1.setNum(rs.getInt("num"));
+				dto1.setWriter(rs.getString("writer"));
+				dto1.setCaption(rs.getString("caption"));
+				dto1.setImagePath(rs.getString("imagePath"));
+				dto1.setRegdate(rs.getString("regdate"));
+				list.add(dto1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
