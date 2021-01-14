@@ -30,12 +30,14 @@
 <%-- 
 보여줄 페이지에 해당되는 div를 반복문 돌면서 응답하겠다. 
 페이지 소스보기를 확인하면 반복문 돌면서 목록을 찍어내는 걸 알 수 있다. 
+
+부분마크업
 --%>
 <%for(GalleryDto tmp:list){ %>
-<div class="col-6 col-md-4 col-lg-3">
+<div class="col-6 col-md-4 col-lg-3" id="id<%=tmp.getNum()%>">
 	<div class="card mb-3"><!-- mb-3 갤러리에 아래 위 공간 -->
 		<a href="detail.jsp?num=<%=tmp.getNum()%>">
-			<div class="img-wrapper"><!-- id를 부여하면 안된다. id=onlyone 여기는 for문 안. -->
+			<div class="img-wrapper page-<%=pageNum%>">
 				<img class="card-img-top" src="${pageContext.request.contextPath }<%=tmp.getImagePath() %>" />
 			</div>
 		</a>
@@ -47,3 +49,10 @@
 	</div>
 </div>
 <%} %>
+<%--
+<div class="img-wrapper page-<%=pageNum%>">
+page-2,3,4 이렇게 페이지가 넘어감
+<div class="img-wrapper page-<%=pageNum%>"> id를 부여하면 안된다. id=onlyone 여기는 for문 안.
+id="id<%=tmp.getNum()%>"
+글번호를 이용해서 유일한 아이디 부여
+--%>

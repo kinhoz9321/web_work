@@ -201,12 +201,22 @@
 	$(".img-wrapper").imgLiquid();
 	//자바스크립트에는 원래 없다. imgLiquid.js 를 추가했기 때문에 사용 가능한 것
 	
+	//페이지가 처음 로딩될 때 1page 를 보여주기 때문에 초기값을 1 로 지정한다.
+	let currentPage=1; //화면상에 로딩된 최신 페이지 번호를 저장할 변수
+	
+	//현재 페이지가 로딩중인지 여부를 저장할 변수 
+	let isLoading=false;
+	
 	//웹브라우저의 창을 스크롤 할 때 마다 호출되는 함수 등록
 	$(window).on("scroll",function(){
 		console.log("scroll!");//스크롤 이벤트가 일어날 때 마다 실행순서가 이리로 들어온다.
 		//최 하단까지 (바닥까지) 스크롤 되었는지 조사해본다.
+	
+		//위로 스크롤된 길이
 		let scrollTop=$(window).scrollTop();
+		//웹브라우저 창의 높이
 		let windowHeight=$(window).height();
+		//문서 전체의 높이
 		let documentHeight=$(document).height();
 		
 		//바닥까지 스크롤 되었음을 알 수 있는 수식
@@ -214,22 +224,56 @@
 		if(isBottom){
 			console.log("바닥입니당!");
 			
+			//만일 현재 마지막 페이지라면 
+			<%--만약 15페이지까지 있다면 <%=totalPageCount %>=15 페이지 소스보기에서 확인 가능--%>
+			if(currentPage == <%=totalPageCount %> || isLoading){//마지막페이지거나 로딩중이면 실행순서 끝냄
+				return; //함수를 여기서 끝낸다.
+			}
+			<%--이 조건을 if(isBottom)에 넣을 수도 있다--%>
+			
+			//현재 로딩중이라고 표시한다.
+			isLoading=true;
+			<%--
+			*2페이지까지만 나오는 이유 (중복 로딩을 방지하기 위해 짠 로직의 버그)
+			
+			isLoading 초기값 false
+			실행순서 false니까 if 건너뜀
+			isLading true로 바뀜.
+			페이지 요청 1번 함 (2페이지)
+			2번째 요청 들어왔을 때 isLoading=true; 
+			if(currentPage == <%=totalPageCount %> || isLoading){//마지막페이지거나 로딩중이면 실행순서 끝냄
+				return; //함수를 여기서 끝낸다.
+			}
+			--%>
+			
 			//로딩바를 띄우고
 			$(".back-drop").show();
+			
+			//요청할 페이지 번호를 1 증가 시킨다. 연산자!
+			currentPage++;
+			
 			//추가로 받아올 페이지를 서버에 ajax 요청을 하고
 			//$.ajax(); 요청에 대한 응답은 {}로 요청
-			
 			$.ajax({
 				url:"ajax_page.jsp",//요청
 				method:"GET",
-				data:"pageNum=2",//페이지는 동적으로 달라져야 함.
+				data:"pageNum="+currentPage,//페이지는 동적으로 달라져야 함. 변수값을 놓고 변수값을 증가시키면서 들어가게 해야한다. 연결 연산자! {pageNum:correntPage} 오브젝트도 가능. 쿼리문자열을 써도 되고 오브젝트를 써도 된다.
 				success:function(data){//응답은 data 함수로 들어옴. 
 					console.log(data); //data=>string 응답된 문자열은 html 형식이다.
 					//해당 문자열을 #galleryList div 에 html 로 해석하라고 추가한다.
-					$("#galleryList").append(data);
+					$("#galleryList").append(data); //= jquery
+					//document.querySelector("#galleryList").append(data); = javascript
+					
 					//응답이 오면 로딩바 숨기기
 					$(".back-drop").hide();
 					
+					//클래스명이 img-wrapper 인 요소를 모두 찾아서 imgLiquid() 동작하기
+					//$(".img-wrapper").imgLiquid();
+					
+					//현재 추가된 img 요소의 부모 div를 선택해서 imgLiquid()동작하기
+					$(".page-"+currentPage).imgLiquid();
+					//로딩중이 아니라고 표시한다.
+					isLoading = false; //2페이지까지만 나오는 버그 해결
 				}
 			});
 			//응답이 오면 응답된 컨텐츠를 body에 추가하고 
@@ -261,4 +305,13 @@ $.ajax({
 	data:"pageNum=2",
 	success:function(data){}
 });
+
+연산자에 대해 좀 더 공부 필요. 자연스럽게 쓰기!
+
+$(".img-wrapper").imgLiquid();
+추가된 것만 저 동작을 하게 하기
+
+주석때문에 동작하지 않는 경우가 많다. 주석을 잘 처리할 것.
+
+논리적으로 생각하는 힘 키우기.
 --%>

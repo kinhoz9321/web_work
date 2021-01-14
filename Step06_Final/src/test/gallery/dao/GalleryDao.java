@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import test.cafe.dto.CafeDto;
 import test.gallery.dto.GalleryDto;
 import test.util.DbcpBean;
 
@@ -19,7 +20,53 @@ public class GalleryDao {
 		return dao;
 	}
 	
-	//
+	//인자로 전달되는 이미지번호에 해당하는 갤러리정보를 리턴하는 메소드
+	public GalleryDto getData(int num) {
+		GalleryDto dto=null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
+			//select 문 작성
+			String sql = "SELECT writer, caption, regdate, imagePath"
+					+ " FROM board_gallery"
+					+ " WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
+			pstmt.setInt(1, num);
+			//select 문 수행하고 ResultSet 받아오기
+			rs = pstmt.executeQuery();
+			//while문 혹은 if문에서 ResultSet으로부터 data 추출
+			/*
+			 * 로우가 1개면 if문
+			 * 여러개면 while문
+			 */
+			if (rs.next()) {
+				dto=new GalleryDto();
+				dto.setNum(num);
+				dto.setWriter(rs.getString("writer"));
+				dto.setCaption(rs.getString("caption"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setImagePath(rs.getString("imagePath"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return dto;
+	}
+	
 	public int getCount() {
 		int count=0;
 		Connection conn = null;
