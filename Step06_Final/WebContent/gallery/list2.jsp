@@ -166,7 +166,7 @@
 		<a href="private/ajax_form.jsp">사진 업로드 하러 가기2</a>
 	</button>
 	<h1>갤러리 목록 입니다.</h1>
-	<div class="row"><!-- row 안에 칼럼의 크기를 만들고 있다. -->
+	<div class="row" id="galleryList"><!-- row 안에 칼럼의 크기를 만들고 있다. -->
 		<%for(GalleryDto tmp:list){ %>
 		<!-- 
 			*col-6 col-md-3 col-lg-4 의미*
@@ -217,7 +217,21 @@
 			//로딩바를 띄우고
 			$(".back-drop").show();
 			//추가로 받아올 페이지를 서버에 ajax 요청을 하고
+			//$.ajax(); 요청에 대한 응답은 {}로 요청
 			
+			$.ajax({
+				url:"ajax_page.jsp",//요청
+				method:"GET",
+				data:"pageNum=2",//페이지는 동적으로 달라져야 함.
+				success:function(data){//응답은 data 함수로 들어옴. 
+					console.log(data); //data=>string 응답된 문자열은 html 형식이다.
+					//해당 문자열을 #galleryList div 에 html 로 해석하라고 추가한다.
+					$("#galleryList").append(data);
+					//응답이 오면 로딩바 숨기기
+					$(".back-drop").hide();
+					
+				}
+			});
 			//응답이 오면 응답된 컨텐츠를 body에 추가하고 
 			
 			//로딩바를 숨긴다.
@@ -239,4 +253,12 @@ scrolltop+windowheight==documentheight 바닥까지 스크롤 했을 때
 
 소스코드를 전부 외울 필요는 없지만, 어떻게 사용해야 하는지, 어떻게 처리해야 하는지 등등...
 방법에 대한 건 숙지해야한다. 단계적 공부에서 많이 익혀둘 것.
+
+ajax 형태
+$.ajax({
+	url:"ajax_page.jsp",
+	method:"GET",
+	data:"pageNum=2",
+	success:function(data){}
+});
 --%>
