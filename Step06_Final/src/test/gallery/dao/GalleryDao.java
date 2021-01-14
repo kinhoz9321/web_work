@@ -29,9 +29,14 @@ public class GalleryDao {
 		try {
 			conn = new DbcpBean().getConn();//DbcpBean()을 설계한다면 여기서 DB를 추출한다. 이거 빼고는 Dao 작성법과 똑같음. 
 			//select 문 작성
-			String sql = "SELECT writer, caption, regdate, imagePath"
-					+ " FROM board_gallery"
-					+ " WHERE num=?";
+			String sql = "SELECT *" + 
+					"	FROM" + 
+					"		(SELECT num, writer, caption, imagePath, regdate," + 
+					"		LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum," + 
+					"		LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum" + 
+					"		FROM board_gallery" + 
+					"		ORDER BY num DESC)" + 
+					"	WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 게 있으면 여기서 바인딩 한다.
 			pstmt.setInt(1, num);
@@ -49,6 +54,8 @@ public class GalleryDao {
 				dto.setCaption(rs.getString("caption"));
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setImagePath(rs.getString("imagePath"));
+				dto.setPrevNum(rs.getInt("prevNum"));
+				dto.setNextNum(rs.getInt("nextNum"));//칼럼명, 테이블명, 함수명 대소문자 가리지 않음. 보기 좋으라고 이렇게 씀.
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

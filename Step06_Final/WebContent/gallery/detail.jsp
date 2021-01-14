@@ -68,6 +68,22 @@
 		<a href="javascript:deleteConfirm()" style="color:white">삭제</a>
 	</button>
 	<%} %>
+	<div class="text-center">
+		<button class="btn btn-outline-primary ">
+			<a href="detail.jsp?num=<%=dto.getPrevNum()%>">이전</a>
+		</button>
+		<button class="btn btn-outline-warning">
+			<a href="detail.jsp?num=<%=dto.getNextNum()%>">다음</a>
+		</button>
+	</div>
+	<%--
+	rs.getnextnum
+	rs.getnextprevnum
+	rs.getnum
+	rs.getwriter
+	rs.getcaprion
+	이용하기
+	 --%>
 </div>
 <script>
 	function deleteConfirm(){

@@ -45,5 +45,15 @@ CREATE TABLE board_gallery(
 	regdate DATE
 );
 
+-- 갤러리 이전글 번호 구현하기 (rs.getInt(prevNum)) 다음글 번호 구현하기 (rs.getInt(nextNum))
+SELECT *
+FROM
+	(SELECT num, writer, caption,
+	LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum, -- 별칭두기 LAG 번호에 대해서 하나 뒤처진 것 (자주쓰임)
+	LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum -- LEAD 번호에 대해서 하나 앞선 것 (자주쓰임)
+	FROM board_gallery
+	ORDER BY num DESC) --1 결과 (전체 목록 SELECT)
+WHERE num=191; --번호가 191번인 결과를 읽어내겠다.
+	
 -- 갤러리 시퀀스
 CREATE SEQUENCE board_gallery_seq;
