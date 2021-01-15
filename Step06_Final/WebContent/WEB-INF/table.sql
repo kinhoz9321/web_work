@@ -45,6 +45,13 @@ CREATE TABLE board_gallery(
 	regdate DATE
 );
 
+-- SELECT 문으로 목록의 이전, 다음 번호 알아내기
+SELECT num, writer,
+	LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
+	LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
+FROM board_gallery;
+-- SELECT 문의 결과도 하나의 테이블이다. 임의의 테이블.
+
 -- 갤러리 이전글 번호 구현하기 (rs.getInt(prevNum)) 다음글 번호 구현하기 (rs.getInt(nextNum))
 SELECT *
 FROM
@@ -54,6 +61,7 @@ FROM
 	FROM board_gallery
 	ORDER BY num DESC) --1 결과 (전체 목록 SELECT)
 WHERE num=191; --번호가 191번인 결과를 읽어내겠다.
-	
+-- LAG LEAD 오라클에서만 사용할 수 있는 함수
+
 -- 갤러리 시퀀스
 CREATE SEQUENCE board_gallery_seq;

@@ -56,7 +56,7 @@
 	<!-- 프로필 이미지에 자바스크립트로 아래 폼을 구현했으니까 안보이게 만들어도 된다. -->
 	<form action="profile_upload.jsp" method="post" enctype="multipart/form-data" id="profileForm"><!-- 오타주의! -->
 		<label for="image">프로필 이미지 선택</label>
-		<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG"/><!-- accept -->
+		<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG, .jfif"/><!-- accept -->
 		<button type="submit">업로드</button>
 	</form>
 </div>
