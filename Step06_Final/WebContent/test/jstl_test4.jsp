@@ -27,6 +27,10 @@
 	<p> 획득한 점수는 <strong>${jumsu }</strong> 입니다.</p>
 	<p> 
 		학점은 
+		<%--
+			다중 if 문 처리 jstl에 if else는 존재하지 않는다.
+			c:choose로 구성해야함.
+		 --%>
 		<c:choose>
 			<c:when test="${jumsu ge 90 }">A</c:when>
 			<c:when test="${jumsu ge 80 }">B</c:when>
@@ -40,11 +44,12 @@
 	<p>
 		<strong>${jumsu }</strong> 는
 		<c:choose>
+		<%-- true, false --%>
 			<c:when test="${jumsu%2 eq 0 }">
-				<strong>짝수</strong>
+				<strong>짝수</strong><%-- true --%>
 			</c:when>
 			<c:otherwise>
-				<strong>홀수</strong>
+				<strong>홀수</strong><%-- false --%>
 			</c:otherwise>
 		</c:choose>
 		입니다.

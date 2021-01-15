@@ -69,6 +69,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/gallery/list.jsp</title>
+<!-- jsp 도 자바 코드. 하지만 거슬리지 않는다. EL 과 jsp 로 해결하기 -->
 <jsp:include page="../include/resource.jsp"></jsp:include>
 <!-- 
 	jquery 플러그인 imgLiquid.js 로딩하기
@@ -205,4 +206,9 @@
 반복문을 돌기 때문에
 id는 onlyone이니까. 반복문안에서 id를 부여하면 안된다.
 알아두기! 중요! 실수 많이하는 부분!
+
+html
+javacode 
+jsp페이지에서 javacode 없애기
+javacode를 태그 형태로 바꿀 것
  -->

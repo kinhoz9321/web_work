@@ -4,7 +4,7 @@
 <%
 	String myName="김구라";
 	//page scope  에  "myName" 이라는 키값으로 myName 담기
-	//page scope 에 담은 값은 해당 페이지(jsp) 내에서만 사용할수 있다.
+	//page scope 에 담은 값은 * 해당 페이지(jsp) 내에서만 사용 *할수 있다.
 	pageContext.setAttribute("myName", myName);
 	
 	String yourName="해골";
@@ -41,6 +41,17 @@
 		request 영역에 "dto" 라는 키값으로 CafeDto type 인   dto 담기
 	*/
 	request.setAttribute("dto", dto);
+	
+	//전부 setAttribute 사용
+	/*
+	4가지 영역
+	page
+	request * 주로 사용
+	session * 주로 사용
+	application
+	
+	데이터를 담는 건 전부 setAttribute 사용
+	*/
 %>    
 <!DOCTYPE html>
 <html>
@@ -65,10 +76,11 @@
 	<p>학원 이름은 <strong>${applicationScope.companyName }</strong></p>
 	<p>학원 이름은 <strong>${companyName }</strong></p>
 	
+	<%-- dto 가 제대로 만들어졌을 때 사용 가능 --%>
 	<h1>EL request scope 에 담긴 dto 의 값 추출</h1>
 	<p>번호 : ${requestScope.dto.getNum() }</p>
 	<p>번호 : ${dto.getNum() }</p>
-	<p>번호 : ${dto.num }</p>
+	<p>번호 : ${dto.num }</p><%-- dto.필드명 알아서 getter 메소드 불러준다. --%>
 	
 	<p>제목 : ${requestScope.dto.getTitle() }</p>
 	<p>제목 : ${dto.getTitle() }</p>
@@ -77,7 +89,10 @@
 	<p>내용 : ${requestScope.dto.getContent() }</p>
 	<p>내용 : ${dto.getContent() }</p>
 	<p>내용 : ${dto.content }</p>
-	<%-- 만일 EL 을 사용하지 않는다면 아래와 같은 작업이 필요하다 --%>
+	<%-- 
+	만일 EL 을 사용하지 않는다면 아래와 같은 작업이 필요하다 
+	EL 의 내부적으로는 이런 일이 일어나고 있다.
+	--%>
 	<% CafeDto dto2=(CafeDto)request.getAttribute("dto");%>
 	<p> 내용 : <%=dto2.getContent() %></p>
 	

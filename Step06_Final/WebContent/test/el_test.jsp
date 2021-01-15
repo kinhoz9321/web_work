@@ -7,6 +7,7 @@
 <title>/test/el_test.jsp</title>
 </head>
 <body>
+	<%-- EL은 무조건 외워야할 것. 자주쓰는 것 --%>
 	<h1>Expression Language 테스트(EL)</h1>
 	<p>jsp 페이지에서 특별하게 해석되는 코드 블럭</p>
 	<p>EL 영역은 &#36;{ } 로 만들수 있습니다.</p>
@@ -17,6 +18,10 @@
 	<p>10*10 = ${10*10 }</p>
 	<p>10/3 = ${10/3 }</p>
 	
+	<%--
+	gt, ge, lt, le, eq, ne, or, and, not
+	가독성이 좋기 때문에 이걸 사용하는 걸 더 선호한다. 익히기.
+	 --%>
 	<h2>비교연산</h2>
 	<p>10 &gt; 2 : ${10 > 2 }</p>
 	<p>10 &gt; 2 : ${10 gt 2 }</p>
@@ -41,6 +46,7 @@
 	<p> !true : ${!true }</p>
 	<p> not true: ${not true }</p>
 	
+	<%-- 중요! empty 외우기 --%>
 	<h2>empty 연산자 (비어 있는지 여부)</h2>
 	<p> null 혹은 빈문자열("") 는 비어(empty) 있다고 판정된다.</p>
 	<p> empty null : ${empty null }</p>

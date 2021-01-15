@@ -60,6 +60,11 @@
 </table>
 <h1>취미 입니다.</h1>
 <ul>
+<%-- 
+문자열의 delims(구분자)가 뭔지만 알려주면 알아서 추출해준다. 
+String hobby="piano,game,reading";
+delims="," 사용
+--%>
 	<c:forTokens var="tmp" items="${hobby }" delims="/">
 		<li>${tmp }</li>
 	</c:forTokens>

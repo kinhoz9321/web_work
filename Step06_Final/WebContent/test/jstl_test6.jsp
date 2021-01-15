@@ -18,6 +18,7 @@
 </head>
 <body>
 <h1>jstl 함수 사용해 보기</h1>
+<%-- content 문자열에서 개행기호를 <br/>로 변경하기 엔터친게 개행기호로 변경됨--%>
 <p>${fn:replace(content, newLine, '<br/>') }</p>
 </body>
 </html>
