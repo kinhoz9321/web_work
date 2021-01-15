@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%
 	//HttpServletRequest 객체를 이용해서 요청과 함께 전달된 쿠키 읽어내기
-	Cookie[] cooks=request.getCookies();
+	Cookie[] cooks=request.getCookies();//배열이니까 여러개 getCookies();
 	//"savedMsg" 라는 키값으로 저장된 문자열을 저장할 변수
 	String savedMsg=null;
 	if(cooks!=null){
-		//반복문 돌면서 쿠키 객체를 하나씩 참조
+		//반복문 돌면서 쿠키 객체를 하나씩 참조 (쿠키가 여러개일 수 있으니까)
 		for(Cookie tmp:cooks){
 			//쿠키의 키값을 읽어온다.
 			String key=tmp.getName();

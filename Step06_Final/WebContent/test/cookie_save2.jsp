@@ -4,7 +4,7 @@
 <%
 	//폼전송되는 문자열 읽어오기
 	String msg=request.getParameter("msg");
-	//모든 문자열을 다 저장하려면 tomcat 8 이하 버전에서는 인코딩을 해서 저장을 한다.
+	//모든 문자열을 다 저장하려면 tomcat 8 이하 버전에서는 인코딩을 해서 저장을 한다. 한글 저장 가능.
 	String encodedMsg=URLEncoder.encode(msg, "utf-8");
 	//1. 쿠키 객체 생성 new Cookie("key", value);
 	Cookie cook=new Cookie("savedMsg", encodedMsg);

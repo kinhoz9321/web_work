@@ -22,6 +22,10 @@
 			
 		}
 	}
+	/*
+		체크한 상태에서 로그인 하면 로그인 정보가 남아있고,
+		체크를 안하면 로그인 정보가 사라짐.
+	*/
 %>
 <!DOCTYPE html>
 <html>
@@ -34,6 +38,7 @@
 	<table>
 		<tr>
 			<th><label for="id">아이디</label></th>
+			<%-- 쿠키로 찾아서 input요소의 value로 강제로 넣어줌. --%>
 			<td><input type="text" name="id" id="id" value="<%=savedId %>"/></td>
 		</tr>
 		<tr>

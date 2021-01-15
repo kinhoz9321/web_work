@@ -100,6 +100,12 @@
 	request.setAttribute("keyword", keyword);
 	request.setAttribute("encodedK", encodedK);
 	request.setAttribute("totalRow", totalRow);
+	
+	/*
+		servlet에서 처리하고 jsp 에서 el을 사용해서 로직처리
+		메모해둔 것 찾아보기 분명 적어놨다.
+	
+	*/
 %>
 <!DOCTYPE html>
 <html>

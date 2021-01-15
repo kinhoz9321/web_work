@@ -7,10 +7,12 @@
 	//1. 쿠키 객체 생성 new Cookie("key", value);
 	Cookie cook=new Cookie("savedMsg", msg);
 	//2. 쿠키 유지시간 (초단위)
-	cook.setMaxAge(60); //60초 테스트
+	cook.setMaxAge(60); //60초 테스트 자동 지워짐. 최대기간은 없다. 1년도 할 수 있음.
 	//3. HttpServletResponse  객체에 담는다.
 	response.addCookie(cook);
 	//4. 응답할때 쿠키가 자동으로 응답되고 클라이언트의 웹브라우저에 저장이 된다. 
+	
+	//쿠키객체 생성해서 addCookie 
 %>    
 <!DOCTYPE html>
 <html>

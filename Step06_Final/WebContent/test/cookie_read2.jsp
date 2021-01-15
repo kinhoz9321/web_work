@@ -12,7 +12,7 @@
 			//쿠키의 키값을 읽어온다.
 			String key=tmp.getName();
 			if(key.equals("savedMsg")){//만일 우리가 찾는 키값이라면 
-				//해당 키값으로 저장된 value 를 읽어내서 디코딩을 한다. 
+				//해당 키값으로 저장된 value 를 읽어내서 디코딩을 한다. 인코딩의 반대 디코딩.
 				savedMsg=URLDecoder.decode(tmp.getValue(),"utf-8");
 			}
 		}
