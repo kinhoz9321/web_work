@@ -29,7 +29,7 @@
 		<li class="list-group-item"><a href="cafe/list.jsp" style="color:black">카페 글 목록 보기</a></li>
 		<li class="list-group-item"><a href="file/list.jsp" style="color:black">자료실 목록 보기</a></li>
 		<li class="list-group-item"><a href="gallery/list.jsp" style="color:black">갤러리 목록 보기</a></li>
-		<li class="list-group-item"><a href="file/list2" style="color:black">자료실 목록보기(MVC 패턴)</a></li>
+		<li class="list-group-item"><a href="file/list3" style="color:black">자료실 목록보기(MVC 패턴)</a></li>
 	</ul>
 </div>
 </body>

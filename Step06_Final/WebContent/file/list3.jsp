@@ -62,7 +62,7 @@
 			<c:choose>
 				<c:when test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link" href="list2?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
+						<a class="page-link" href="list3?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
 					</li>
 				</c:when>
 				<c:otherwise>
@@ -75,12 +75,12 @@
 				<c:choose>
 					<c:when test="${i eq pageNum }">
 						<li class="page-item active">
-							<a class="page-link" href="list2?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							<a class="page-link" href="list3?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a class="page-link" href="list2?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							<a class="page-link" href="list3?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -88,7 +88,7 @@
 			<c:choose>
 				<c:when test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-						<a class="page-link" href="list2?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
+						<a class="page-link" href="list3?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
 					</li>
 				</c:when>
 				<c:otherwise>
@@ -99,7 +99,7 @@
 			</c:choose>
 		</ul>
 	</nav>
-	<form action="flie/list2" method="get">
+	<form action="flie/list3" method="get">
 		<label for="condition">검색조건</label>
 		<select name="condition" id="condition">
 			<option value="title_filename" ${condition eq 'title_filename' ? 'selected' : '' }>제목+파일명</option>

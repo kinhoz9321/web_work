@@ -116,7 +116,7 @@ public class FileListServlet extends HttpServlet{
 		request.setAttribute("encodedK", encodedK);
 		request.setAttribute("totalRow", totalRow);
 		// jsp 페이지로 forward 이동해서 응답한다.
-		RequestDispatcher rd=request.getRequestDispatcher("/file/list2.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/file/list3.jsp");
 		rd.forward(request, response);
 	}
 }
