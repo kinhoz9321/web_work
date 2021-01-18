@@ -65,7 +65,7 @@
 	
 	$("#myForm").on("submit", function(){
 		//폼 전체의 유효성 여부
-		isFormValid=isIdValid && isPhoneValid;
+		isFormValid=isIdValid && isPhoneValid;//어느 한곳이라도 정규표현식을 만족하지 못하면
 		if(!isFormValid){//폼이 유효 하지 않으면 
 			return false;//폼 제출을 막아준다.
 		}

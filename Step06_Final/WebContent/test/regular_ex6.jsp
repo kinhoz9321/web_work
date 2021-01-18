@@ -62,6 +62,7 @@
 		}
 	});
 	/*
+	jquery를 사용한 코드
 	$("#myForm").on("submit", function(){
 		//폼 전체의 유효성 여부
 		isFormValid=isIdValid && isPhoneValid;
@@ -85,7 +86,13 @@
 </script>
 </body>
 </html>
+<%--
+jquery
+return false;
 
+javascript
+event.preventDefault();
+ --%>
 
 
 

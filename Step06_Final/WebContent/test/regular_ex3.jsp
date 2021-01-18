@@ -30,7 +30,7 @@
 		//입력한 아이디를 읽어와서 검증한다.
 		var inputId=$("#id").val();
 		//만일 입력한 아이디가 아이디 검증 정규표현식과 부합되지 않으면
-		if(!reg_id.test(inputId)){
+		if(!reg_id.test(inputId)){//정규표현식에 만족하지 않으면
 			//1. 에러 메세지를 띄우고
 			//alert("영문자 소문자로 시작을 하고 최소 5글자에서 최대 10글자 이내로 작성하세요");
 			$(".error-feedback").show();

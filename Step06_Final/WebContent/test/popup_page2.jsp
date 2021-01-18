@@ -14,6 +14,7 @@
 <body>
 <h3>팝업된 페이지 입니다.</h3>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam eos eius nemo ducimus quam totam dignissimos qui aperiam distinctio maxime dolore maiores optio ad. Quaerat itaque quod architecto sint voluptatum.</p>
+<%-- popup_save.jsp 페이지로 이동 --%>
 <form action="popup_save.jsp" method="post">
 	<label>
 		<input type="checkbox" name="canPopup" value="no" />

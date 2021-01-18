@@ -30,17 +30,17 @@
 	left = 팝업창이 뜨는 위치(화면 왼쪽에서부터의 거리 지정)
 	*/
 	
-	//팝업 띄우는 함수 
+	//팝업 띄우는 함수 (옵션 전달 window.open(옵션) 팝업띄우기)
 	function showPopup(){
 		window.open("popup_page.jsp","팝업창","width=400,height=300,top=100,left=100");
 	}
 	
-	//팝업을 중앙에 띄우는 함수 
+	//팝업을 중앙에 띄우는 함수 ***
 	function showPopup2(){
 		PopupCenter("popup_page.jsp","팝업창", 800, 500);
 	}
 	
-	//팝업을 중앙에 원하는 페이지를 원하는  크기로 띄우는 함수 
+	//팝업을 중앙에 원하는 페이지를 원하는  크기로 띄우는 함수 (뭘 띄울건지, 제목, 폭, 높이 전달)
 	function PopupCenter(url, title, w, h) {
 		// Fixes dual-screen position                         Most browsers      Firefox
 		var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;

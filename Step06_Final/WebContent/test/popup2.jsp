@@ -33,7 +33,7 @@
 		window.open("popup_page2.jsp","팝업창","width=400,height=300,top=100,left=100");
 	}
 	
-	//팝업을 중앙에 띄우는 함수 
+	//팝업을 중앙에 띄우는 함수 (popup_page2.jsp 이동)
 	function showPopup2(){
 		PopupCenter("popup_page2.jsp","팝업창", 800, 500);
 	}
@@ -72,7 +72,7 @@
 		}
 	%>
 	
-	//페이지 로딩 시점에 팝업을 조건부로 띄우기 
+	//페이지 로딩 시점에 팝업을 조건부로 띄우기 canPopup이 ture일때 뜬다***
 	<%if(canPopup){%>
 		showPopup2();	
 	<%}%>
@@ -90,6 +90,8 @@
 학습목표
 팝업 페이지를 띄우는 방법
 쿠키를 어떻게 활용하면 팝업을 띄울지 안띄울지 결정할까?
+
+어떤 원리로 팝업이 뜨고, 안뜨고 동작하는지 알아볼 것
  --%>
 
 

@@ -33,7 +33,10 @@
 	//아이디를 검증할수 있는 정규 표현식
 	var reg_id=/^[a-z].{4,9}$/;
 	//휴대폰 번호를 검증할수 있는 정규 표현식
-	var reg_phone=/^010-[0-9]{4}-[0-9]{4}$/;
+	/*
+	반드시 010으로 시작 4번반복 4번반복
+	*/
+	var reg_phone=/^010-[0-9]{4}-[0-9]{4}$/;//- 빼고 만들어도 됨. 정하기 나름.
 	//id 유효성
 	var isIdValid=false;
 	//phone 유효성
@@ -50,7 +53,7 @@
 		var inputPhone=$("#phone").val();
 		isPhoneValid=reg_phone.test(inputPhone);
 		//폼 전체의 유효성 여부
-		isFormValid=isIdValid && isPhoneValid;
+		isFormValid=isIdValid && isPhoneValid;//아이디도 통과해야되고 전화번호도 통과해야한다. && and 조건 사용
 		
 		//만일 입력한 아이디가 아이디 검증 정규표현식과 부합되지 않으면
 		if(!isIdValid){
