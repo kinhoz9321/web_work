@@ -92,7 +92,6 @@
 	}
 </style>
 </head>
-
 <body class="text-center">
 <jsp:include page="../include/navbar.jsp"></jsp:include>
 <form class="form-signin" action="login.jsp" method="post">
